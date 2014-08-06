@@ -76,7 +76,7 @@ class DefaultController extends Controller
 		}
 		elseif(strpos($content, 'images/c1.gif') !== false)
 		{
-			$power_grid_status['status'] = 'Normal';
+			$power_grid_status['status'] = 'Safe';
 		}
 
         $status = json_encode($power_grid_status);
