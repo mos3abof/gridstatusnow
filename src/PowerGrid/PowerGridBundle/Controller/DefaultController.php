@@ -16,29 +16,34 @@ class DefaultController extends Controller
 		try
 		{
 
-			$content = file_get_contents('http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx');
+			$content = @file_get_contents('http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx');
 			$content = strtolower($content);
+            if (strcmp(trim($content),'') == 0)
+            {
+                throw new Exception("Source seems to be down", 1);
+                
+            }
 
-			$power_grid_status = array('status' => 'Unknown');
+			$power_grid_status = array('status' => 'Unknown Status');
 
 			if(strpos($content, 'images/c3.gif') !== false)
 			{
 				$status_array = array(
-					'status' => 'Danger',
+					'status' => 'Danger Zone',
 					'cssclass' => 'danger',
 				);
 			}
 			elseif(strpos($content, 'images/c2.gif') !== false)
 			{
 				$status_array = array(
-					'status' => 'Warning',
+					'status' => 'Warning Zone',
 					'cssclass' => 'warning',
 				);
 			}
 			elseif(strpos($content, 'images/c1.gif') !== false)
 			{
 				$status_array = array(
-					'status' => 'Normal',
+					'status' => 'Safe Zone',
 					'cssclass' => 'success',
 				);
 			}
@@ -46,7 +51,7 @@ class DefaultController extends Controller
 		catch(Exception $e)
 		{
 			$status_array = array(
-				'status' => 'Unknown, source seems to be down',
+				'status' => 'Unknown Status. Source seems to be down!',
 				'cssclass' => 'danger',
 			);
 		}

@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
 
-    <title>Power Grid Status</title>
+    <title>Egypt Power Grid Load Status</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/cover/cover.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/blog/blog.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -27,58 +28,115 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+	 <style>
+
+	 .axis {
+	   font: 10px sans-serif;
+	 }
+	
+	 .axis path,
+	 .axis line {
+	   fill: none;
+	   stroke: #000;
+	   shape-rendering: crispEdges;
+	 }
+	
+	 </style>
   </head>
 
   <body>
 
-    <div class="site-wrapper">
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Home</a>
+          <!--<a class="blog-nav-item" href="#">History</a>-->
+          <!--<a class="blog-nav-item" href="#">Api</a>-->
+          <a class="blog-nav-item" href="https://github.com/mos3abof/power-grid-staus" target="_blank">Github</a>
+        </nav>
+      </div>
+    </div>
 
-      <div class="site-wrapper-inner">
+    <div class="container">
 
-        <div class="cover-container">
+      <div class="blog-header">
+        <h1 class="blog-title">Power Grid Load Status</h1>
+        <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
+      </div>
 
-          <div class="masthead clearfix">
-            <div class="inner">
-              <!--<h3 class="masthead-brand">Egypt Power Grid Load Status</h3>-->
-              <ul class="nav masthead-nav">
-                <li><a href="https://github.com/mos3abof/power-grid-staus" target="_blank">Fork on Github</a></li>
-              </ul>
-            </div>
-          </div>
+      <div class="row">
 
-          <div class="inner cover">
-            <h1 class="cover-heading">Egypt Power Grid Load Status Now is </h1>
-            <br /><br />
-            <p class="lead">
-            <a href="#" class="btn btn-lg btn-block btn-{{status_array.cssclass}}">{{status_array.status}}</a>
-              
-              <br /><br />
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <p>
+            	According to The Egyptian Electric Utility and Consumer Protection Regulatory Agency, 
+            	the current load on Egypt's electric power grid is now in the :
             </p>
-            
-            <p class="lead">
-            You can get the result programatically through this endpoint :   
-              <pre>http://power-status-grid.mos3abof.com/status</pre>
+            <p>
+            	<span class="text-center text-capitalize btn-lg btn-block btn-{{status_array.cssclass}}" style="font-size:1.5em;">
+            		{{status_array.status}}
+            	</span>
             </p>
-            
+            <hr>
+            <p>
+            	To grab the result above programmatically in JSON format use this URL :
+            	
+            	<pre class="text-center">http://power-grid-status.mos3abof.com/status</pre>
             </p>
-          </div>
+            <!--<p>
+            	According to the same source, here is the load distribution throughout today :
+            	
+            	
+            	
+            </p>-->
+          </div><!-- /.blog-post -->
 
-          <div class="mastfoot">
-            <div class="inner">
-              <p>
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>
+            	
               	This is an attempt at parsing the data in the 
             	<a href="http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx" target="_blank" style="text-decoration:underline;">Load Meter</a>
             	 provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency 
             	 (<a href="http://egyptera.org/ar/" target="_blank" style="text-decoration:underline;">EGYPTERA</a>).
-			  </p>
-            </div>
+			  
+			</p>
           </div>
+          <!--
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">March 2014</a></li>
+              <li><a href="#">February 2014</a></li>
+              <li><a href="#">January 2014</a></li>
+              <li><a href="#">December 2013</a></li>
+              <li><a href="#">November 2013</a></li>
+              <li><a href="#">October 2013</a></li>
+              <li><a href="#">September 2013</a></li>
+              <li><a href="#">August 2013</a></li>
+              <li><a href="#">July 2013</a></li>
+              <li><a href="#">June 2013</a></li>
+              <li><a href="#">May 2013</a></li>
+              <li><a href="#">April 2013</a></li>
+            </ol>
+          </div>--><!-- /.blog-sidebar -->
 
-        </div>
+      </div><!-- /.row -->
 
-      </div>
+    </div><!-- /.container -->
 
+    <div class="blog-footer">
+      <p>Created by <a href="http://www.mos3abof.com" target="_blank">@mos3abof</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
     </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -88,3 +146,4 @@
     <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
   </body>
 </html>
+            
