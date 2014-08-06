@@ -1,0 +1,8 @@
+power_grid_homepage:
+    path:     /
+    defaults: { _controller: PowerGridBundle:Default:index }
+
+
+power_grid_status:
+    path:     /status
+    defaults: { _controller: PowerGridBundle:Default:status }

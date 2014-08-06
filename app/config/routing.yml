@@ -1,0 +1,4 @@
+power_grid:
+    resource: "@PowerGridBundle/Resources/config/routing.yml"
+    prefix:   /
+
