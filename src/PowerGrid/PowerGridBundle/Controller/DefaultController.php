@@ -4,6 +4,9 @@ namespace PowerGrid\PowerGridBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+
 class DefaultController extends Controller
 {
 	public function indexAction()
@@ -64,11 +67,11 @@ class DefaultController extends Controller
 		$content = @file_get_contents('http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx');
 		$content = strtolower($content);
 
-		$power_grid_status = array('status' => 'Unknown');
+		$power_grid_status = array("status" => "Unknown");
 
 		if(strpos($content, 'images/c3.gif') !== false)
 		{
-			$power_grid_status['status'] = 'Danger';
+			$power_grid_status["status"] = "Danger";
 		}
 		elseif(strpos($content, 'images/c2.gif') !== false)
 		{
@@ -79,8 +82,9 @@ class DefaultController extends Controller
 			$power_grid_status['status'] = 'Safe';
 		}
 
-        $status = json_encode($power_grid_status);
-		return $this->render('PowerGridBundle:Default:status.html.twig', array('status' => $status));
+        $status = $power_grid_status;
+        
+        return new JsonResponse($status);
 	}
 
 }
