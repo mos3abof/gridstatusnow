@@ -1,3 +1,16 @@
+{% if status == 'Danger' %}
+    {% set status_class = 'danger' %}
+    {% set status_message = 'Danger Zone' %}
+{% elseif status == 'Warning' %}
+    {% set status_class = 'warning' %}
+    {% set status_message = 'Warning Zone' %}
+{% elseif status == 'Safe' %}
+    {% set status_class = 'success' %}
+    {% set status_message = 'Safe Zone' %}
+{% else %}
+    {% set status_class = 'danger' %}
+    {% set status_message = 'Unknown Status. Source seems to be down!' %}
+{% endif %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -84,9 +97,9 @@
             	the current load on Egypt's electric power grid is now in the :
             </p>
             <p>
-            	<span class="text-center text-capitalize btn-lg btn-block btn-{{status_array.cssclass}}" style="font-size:1.5em;">
-            		{{status_array.status}}
-            	</span>
+                <span class="text-center text-capitalize btn-lg btn-block btn-{{status_class}}" style="font-size:1.5em;">
+                    {{ status_message }}
+                </span>
             </p>
             <p>
             	Unfortunately, EGYPTERA's load meter only shows if the power is in the "Safe Zone", "Warning Zone" or "Danger Zone".
@@ -187,4 +200,3 @@
     <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
   </body>
 </html>
-            
