@@ -1,4 +1,12 @@
-power_grid:
-    resource: "@PowerGridBundle/Resources/config/routing.yml"
-    prefix:   /
+home_page:
+    pattern:  /
+    defaults: { _controller: PowerGridBundle:Default:index }
+    
+staus:
+    pattern:  /status
+    defaults: { _controller: PowerGridBundle:Default:status }
 
+# power_grid:
+    # resource: "@PowerGridBundle/Resources/config/routing.yml"
+    # prefix:   /
+# 
