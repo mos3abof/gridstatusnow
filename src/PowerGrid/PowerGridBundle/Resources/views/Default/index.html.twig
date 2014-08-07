@@ -109,7 +109,25 @@
             	<code>Danger</code>, <code>Warning</code> or <code>Safe</code>.
             	If the API fails to open and/or parse the source it will return the response <code>Unknown</code>
             </p>
-            
+            <hr />
+            <p>
+            	 Here is a python snippet that calls the API : 
+            	 <pre>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#@author Mosab Ahmad 
+
+import requests
+import json
+
+status = json.loads(requests.get('http://power-grid-status.mos3abof.com/status').text)
+
+print 'Power grid is now in the {} Zone!'.format(status['status'])
+            	 </pre>
+            	 
+            	 An example output :
+            	 <pre>Power grid is now in the Danger Zone!</pre>
+            </p>
+            <hr />
             <p>
             	This project was inspired by the post posted by 
             	<a href="http://tarekamr.appspot.com/" target="_blank">Tarek Amr</a>
