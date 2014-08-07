@@ -61,7 +61,7 @@ class DefaultController extends Controller
 
 	public function statusAction()
 	{
-		$content = file_get_contents('http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx');
+		$content = @file_get_contents('http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx');
 		$content = strtolower($content);
 
 		$power_grid_status = array('status' => 'Unknown');
