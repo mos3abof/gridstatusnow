@@ -1,7 +1,6 @@
 parameters:
-#    power_grid.example.class: PowerGrid\PowerGridBundle\Example
+    power_grid.class: PowerGrid\PowerGridBundle\PowerGrid\PowerGridService
 
 services:
-#    power_grid.example:
-#        class: %power_grid.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    power_grid_service:
+        class: "%power_grid.class%"
