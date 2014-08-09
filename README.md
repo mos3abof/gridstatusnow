@@ -6,6 +6,12 @@ The Egyptian Electric Utility and Consumer Protection Regulatory Agency ([EGYPTE
 
 You can visit the site [here][3].
 
+
+Contributors
+============
+
+Khaled Attia ([@khal3d][4])
+
 License
 =======
 
@@ -31,3 +37,4 @@ License
 [1]:  http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx
 [2]:  http://egyptera.org/ar/
 [3]:  http://power-grid-status.mos3abof.com/
+[4]:  https://github.com/khal3d
