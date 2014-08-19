@@ -5,6 +5,10 @@ home_page:
 staus:
     pattern:  /status
     defaults: { _controller: PowerGridBundle:Default:status }
+    
+history:
+    pattern:  /history
+    defaults: { _controller: PowerGridBundle:Default:history }
 
 # power_grid:
     # resource: "@PowerGridBundle/Resources/config/routing.yml"
