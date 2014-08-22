@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    
+    {% block fb %} {% endblock %}
+    
+    
+    <link rel="icon" href="./favicon.ico">
+
+    <title>
+    	{% block title %} {% endblock %}
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/blog/blog.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	 <style>
+
+	 .axis {
+	   font: 10px sans-serif;
+	 }
+	
+	 .axis path,
+	 .axis line {
+	   fill: none;
+	   stroke: #000;
+	   shape-rendering: crispEdges;
+	 }
+	 
+	  rect.bordered {
+        stroke: #E6E6E6;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Consolas, courier;
+        fill: #aaa;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+	
+	 </style>
+	 
+	  <script src="http://d3js.org/d3.v3.js"></script>
+    </head>
+    <body>
+    	 <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item {% block home_active %} {% endblock %}" href="/">Home</a>
+          <a class="blog-nav-item {% block history_active %} {% endblock %}" href="/history">History</a>
+          <!--<a class="blog-nav-item" href="#">Api</a>-->
+          <a class="blog-nav-item" href="https://github.com/mos3abof/power-grid-staus" target="_blank">Github</a>
+        </nav>
+      </div>
+    </div>
+    
+    
+    <div class="container">
+
+	{% block content %}{% endblock %}
+
+
+      
+
+    </div><!-- /.container -->
+
+    <div class="blog-footer">
+      <p>Created by <a href="http://www.mos3abof.com" target="_blank">@mos3abof</a>.</p>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+  </body>
+</html>

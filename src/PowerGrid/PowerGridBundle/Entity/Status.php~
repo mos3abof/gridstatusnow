@@ -1,0 +1,39 @@
+<?php
+
+namespace PowerGrid\PowerGridBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Status
+ *
+ * @ORM\Table(name="status")
+ * @ORM\Entity
+ */
+class Status
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=10, nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp", type="datetime", nullable=false)
+     */
+    private $timestamp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

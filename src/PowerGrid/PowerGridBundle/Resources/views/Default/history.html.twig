@@ -1,8 +1,22 @@
 {% extends '::base.html.twig' %}
 
+
+
+{% block title %}Egypt Power Grid Load Distribution Graph{% endblock %}
+
+
+{% block fb %}
+	<meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://power-grid-status.mos3abof.com/history"/>
+    <meta property="og:title" content="Egypt Power Grid Load Distribution Graph"/>
+    <meta property="og:description" content="How is the power load throughout the dy hours."/>
+    <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>    
+{% endblock %}
+
+{% block history_active %} active{% endblock %}
+
 {% block content %}
-  
-     
+   
       <div class="row">
           <div class="blog-post">
 		<div class="blog-header text-center">
