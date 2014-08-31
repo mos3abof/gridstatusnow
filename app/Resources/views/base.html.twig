@@ -76,8 +76,8 @@
     	 <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item {% block home_active %} {% endblock %}" href="/">Home</a>
-          <a class="blog-nav-item {% block history_active %} {% endblock %}" href="/history">History</a>
+          <a class="blog-nav-item {% block home_active %} {% endblock %}" href="{{ path('home_page') }}">Home</a>
+          <a class="blog-nav-item {% block history_active %} {% endblock %}" href="{{ path('history') }}">History</a>
           <!--<a class="blog-nav-item" href="#">Api</a>-->
           <a class="blog-nav-item" href="https://github.com/mos3abof/power-grid-staus" target="_blank">Github</a>
         </nav>
