@@ -1,106 +1,125 @@
 {% extends '::base.html.twig' %}
 
-
-
 {% block title %}Egypt Power Grid Load Distribution Graph{% endblock %}
 
-
 {% block fb %}
-	<meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://power-grid-status.mos3abof.com/history"/>
-    <meta property="og:title" content="Egypt Power Grid Load Distribution Graph"/>
-    <meta property="og:description" content="How is the power load throughout the dy hours."/>
-    <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>    
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="http://power-grid-status.mos3abof.com/history"/>
+<meta property="og:title" content="Egypt Power Grid Load Distribution Graph"/>
+<meta property="og:description" content="How is the power load throughout the day hours. Each row represents a day, and every block stands for an hour of the day starting at 12 am and finishing at 12 am the next day."/>
+<meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
 {% endblock %}
 
 {% block history_active %} active{% endblock %}
 
 {% block content %}
-   
-      <div class="row">
-          <div class="blog-post">
+
+<div class="row">
+	<div class="blog-post">
 		<div class="blog-header text-center">
-  		<h1>Power grid load distribution in August, 2014</h1>
-	
-    <div id="week-1"></div> 
-    Legend : 
-    <button type="button" class="btn btn-success">Normal</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-      
+			<h1>Power grid load distribution in {{month|title}}, 2014</h1>
 
-    <script type="text/javascript">
-      var margin = { top: 50, right: 0, bottom: 100, left: 120 },
-      	  days = ["Friday 1st", "Saturday 2nd", "Sunday 3rd", "Monday 4th", "Tuesday 5th", "Wednesday 6th", "Thursday 7th", "Friday 8th", "Saturday 9th", "Sunday 10th", "Monday 11th", "Tuesday 12th", "Wednesday 13th", "Thursday 14th", "Friday 15th", "Saturday 16th", "Sunday 17th", "Monday 18th", "Tuesday 19th", "Wednesday 20th", "Thursday 21st", "Friday 22nd", "Saturday 23rd", "Sunday 24th", "Monday 25th", "Tuesday 26th", "Wednesday 27th", "Thursday 28th", "Friday 29th", "Saturday 30th", "Sunday 31st"],
-          width = 960 - margin.left - margin.right,
-          height = 1175 - margin.top - margin.bottom,
-          //height = ((days.length * 36) + 30) - margin.top - margin.bottom,
-          //height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
-          gridSize = Math.floor(width / 24),
-          legendElementWidth = gridSize*2,
-          buckets = 3,
-          colors = ["#D43F3A","#EEA236","#4CAE4C"], // alternatively colorbrewer.YlGnBu[9]
-          times = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
+			<div id="week-1"></div>
+			Legend :
+			<button type="button" class="btn btn-success">
+				Normal
+			</button>
+			<button type="button" class="btn btn-warning">
+				Warning
+			</button>
+			<button type="button" class="btn btn-danger">
+				Danger
+			</button>
 
+			<script type="text/javascript">
+var margin = { top: 50, right: 0, bottom: 100, left: 120 },
+// days = ["Friday 1st", "Saturday 2nd", "Sunday 3rd", "Monday 4th", "Tuesday 5th", "Wednesday 6th", "Thursday 7th", "Friday 8th", "Saturday 9th", "Sunday 10th", "Monday 11th", "Tuesday 12th", "Wednesday 13th", "Thursday 14th", "Friday 15th", "Saturday 16th", "Sunday 17th", "Monday 18th", "Tuesday 19th", "Wednesday 20th", "Thursday 21st", "Friday 22nd", "Saturday 23rd", "Sunday 24th", "Monday 25th", "Tuesday 26th", "Wednesday 27th", "Thursday 28th", "Friday 29th", "Saturday 30th", "Sunday 31st",],
+days = {{ d3_days|raw }}
+width = 960 - margin.left - margin.right,
+height = 1175 - margin.top - margin.bottom,
+//height = ((days.length * 36) + 30) - margin.top - margin.bottom,
+//height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
+gridSize = Math.floor(width / 24),
+legendElementWidth = gridSize*2,
+buckets = 3,
+colors = ["#D43F3A","#EEA236","#4CAE4C"], // alternatively colorbrewer.YlGnBu[9]
+times = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
 
-      d3.tsv("{{ asset('august.tsv')}}",
-        function(d) {
-          return {
-            day: +d.day,
-            hour: +d.hour,
-            value: +d.value
-          };
-        },
-        function(error, data) {
-          var colorScale = d3.scale.quantile()
-              .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-              .range(colors);
+{% if month == 'august' %}
+d3.tsv("{{ asset('august.tsv')}}",
+{% elseif month == 'september' %}
+d3.tsv("{{ asset('september.tsv')}}",
+{% endif %}
 
-          var svg = d3.select("#week-1").append("svg")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-              .append("g")
-              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-          var dayLabels = svg.selectAll(".dayLabel")
-              .data(days)
-              .enter().append("text")
-                .text(function (d) { return d; })
-                .attr("x", 0)
-                .attr("y", function (d, i) { return i * gridSize; })
-                .style("text-anchor", "end")
-                .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+function(d) {
+return {
+day: +d.day,
+hour: +d.hour,
+value: +d.value
+};
+},
+function(error, data) {
+var colorScale = d3.scale.quantile()
+.domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+.range(colors);
+
+var svg = d3.select("#week-1").append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var dayLabels = svg.selectAll(".dayLabel")
+.data(days)
+.enter().append("text")
+.text(function (d) { return d; })
+.attr("x", 0)
+.attr("y", function (d, i) { return i * gridSize; })
+.style("text-anchor", "end")
+.attr("transform", "translate(-6," + gridSize / 1.5 + ")")
 //                .attr("class", function (d, i) { return ((i >= 1 && i <= 5) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
-                .attr("class", function (d, i) {return "dayLabel mono axis axis-workweek"; });
+.attr("class", function (d, i) {return "dayLabel mono axis axis-workweek"; });
 
-          var timeLabels = svg.selectAll(".timeLabel")
-              .data(times)
-              .enter().append("text")
-                .text(function(d) { return d; })
-                .attr("x", function(d, i) { return i * gridSize; })
-                .attr("y", 0)
-                .style("text-anchor", "middle")
-                .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-                .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+var timeLabels = svg.selectAll(".timeLabel")
+.data(times)
+.enter().append("text")
+.text(function(d) { return d; })
+.attr("x", function(d, i) { return i * gridSize; })
+.attr("y", 0)
+.style("text-anchor", "middle")
+.attr("transform", "translate(" + gridSize / 2 + ", -6)")
+.attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
-          var heatMap = svg.selectAll(".hour")
-              .data(data)
-              .enter().append("rect")
-              .attr("x", function(d) { return (d.hour - 1) * gridSize; })
-              .attr("y", function(d) { return (d.day - 1) * gridSize; })
-              .attr("rx", 4)
-              .attr("ry", 4)
-              .attr("class", "hour bordered")
-              .attr("width", gridSize)
-              .attr("height", gridSize)
-              .style("fill", colors[0]);
+var heatMap = svg.selectAll(".hour")
+.data(data)
+.enter().append("rect")
+.attr("x", function(d) { return (d.hour - 1) * gridSize; })
+.attr("y", function(d) { return (d.day - 1) * gridSize; })
+.attr("rx", 4)
+.attr("ry", 4)
+.attr("class", "hour bordered")
+.attr("width", gridSize)
+.attr("height", gridSize)
+.style("fill", colors[0]);
 
-          heatMap.transition().duration(1000)
-              .style("fill", function(d) { return colorScale(d.value); });
+heatMap.transition().duration(1000)
+.style("fill", function(d) { return colorScale(d.value); });
 
-          heatMap.append("title").text(function(d) { return d.value; });
-          
-      });
-    </script>
-    </div></div>  
-    
-{% endblock %}
+heatMap.append("title").text(function(d) { return d.value; });
+
+});
+			</script>
+		</div>
+
+		<div class="blog-post text-center">
+			<p>
+				This graph is available for the following months :
+			</p>
+			<p>
+				<a href="{{ path('history_archive', {'month': 'august'}) }}">August</a>
+				&amp; <a href="{{ path('history_archive', {'month': 'september'}) }}">September</a>
+			</p>
+
+		</div>
+
+	</div>
+	{% endblock %}
