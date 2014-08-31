@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Error : Page Not Found | Egypt Power Grid Load Status{% endblock %}
+
+{% block content %}
+<div class="blog-header">
+        <h1 class="blog-title">{{ error_title }}</h1>
+        <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <p>
+                You might want to go back to the <a class="blog-nav-item {% block home_active %} {% endblock %}" href="{{ path('home_page') }}">home page</a>!
+            </p>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+</div>
+      
+{% endblock %}

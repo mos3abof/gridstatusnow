@@ -5,6 +5,8 @@ namespace PowerGrid\PowerGridBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+// use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
@@ -18,7 +20,7 @@ class DefaultController extends Controller
 		return new JsonResponse( array('status' => $this->get('power_grid_service')->getStatus()));
 	}
 
-	public function historyAction($month = 'august')
+	public function historyAction($month = 'september')
 	{
 		$allowed_months = array(
 			'august',
@@ -46,7 +48,10 @@ class DefaultController extends Controller
 
 		if(!in_array($month, $allowed_months))
 		{
-			throw new \Exception('We don\'t have records for that month!');
+		    // throw $this->createNotFoundException('Sorry not existing');
+		    // throw new HttpException(404, "No Data Available For That Month!");
+		   return $this->render('PowerGridBundle:Default:error.html.twig', array('error_title' => 'No Data Available For That Month!'));
+
 		}
 
 		$d3_days = '[';
