@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Error : {{ status_text }} | Egypt Power Grid Load Status{% endblock %}
+
+
+{% block home_active %} active{% endblock %}
+
+
+{% block content %}
+<div class="blog-header">
+        <h1 class="blog-title">Ooops!</h1>
+        <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <p>
+                The dev is working onf fixing this shortly.
+            </p>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+</div>
+      
+{% endblock %}

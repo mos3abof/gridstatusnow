@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    
+
+
     {% block fb %} {% endblock %}
-    
-    
+
+
     <link rel="icon" href="./favicon.ico">
 
     <title>
@@ -22,6 +22,9 @@
 
     <!-- Custom styles for this template -->
     <link href="http://getbootstrap.com/examples/blog/blog.css" rel="stylesheet">
+
+    <!-- Google Fond -->
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700' rel='stylesheet' type='text/css'>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -38,20 +41,36 @@
 
 	 <style>
 
+   body, h1, h2, h3, h4, p, div, span
+   {
+    font-family: 'Vollkorn', serif !important;
+   }
+
+
+   h2
+   {
+      font-size:1.6em;
+   }
+
+   h3
+   {
+      font-size:1.3em;
+   }
+
 	 .axis {
 	   font: 10px sans-serif;
 	 }
-	
+
 	 .axis path,
 	 .axis line {
 	   fill: none;
 	   stroke: #000;
 	   shape-rendering: crispEdges;
 	 }
-	 
+
 	  rect.bordered {
         stroke: #E6E6E6;
-        stroke-width:2px;   
+        stroke-width:2px;
       }
 
       text.mono {
@@ -67,9 +86,9 @@
       text.axis-worktime {
         fill: #000;
       }
-	
+
 	 </style>
-	 
+
 	  <script src="http://d3js.org/d3.v3.js"></script>
     </head>
     <body>
@@ -78,19 +97,20 @@
         <nav class="blog-nav">
           <a class="blog-nav-item {% block home_active %} {% endblock %}" href="{{ path('home_page') }}">Home</a>
           <a class="blog-nav-item {% block history_active %} {% endblock %}" href="{{ path('history') }}">History</a>
+          <a class="blog-nav-item {% block faq_active %} {% endblock %}" href="{{ path('faq') }}">FAQ</a>
           <!--<a class="blog-nav-item" href="#">Api</a>-->
           <a class="blog-nav-item" href="https://github.com/mos3abof/power-grid-staus" target="_blank">Github</a>
         </nav>
       </div>
     </div>
-    
-    
+
+
     <div class="container">
 
 	{% block content %}{% endblock %}
 
 
-      
+
 
     </div><!-- /.container -->
 
@@ -98,7 +118,7 @@
       <p>
       	Created by <a href="http://www.mos3abof.com" target="_blank">@mos3abof</a>
       	using <a href="http://www.symfony.com" target="_blank">Symfony</a>,
-      	<a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> and 
+      	<a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> and
       	<a href="http://d3js.org/" target="_blank">D3</a>.
       </p>
       <p>

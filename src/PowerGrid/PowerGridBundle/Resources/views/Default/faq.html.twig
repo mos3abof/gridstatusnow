@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}FAQ | Power Grid Load Status As A Web Service{% endblock %}
+
+{% block fb %}
+	<meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://power-grid-status.mos3abof.com/"/>
+    <meta property="og:title" content="Power Grid Load Status As A Web Service FAQ"/>
+    <meta property="og:description" content="Frequently asked questions about Power Grid Load Status As A Web Service project."/>
+    <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
+
+{% endblock %}
+
+{% block faq_active %} active{% endblock %}
+
+
+{% block content %}
+<div class="blog-header">
+        <h1>Power Grid Load Status As A Web Service &raquo;</h1>
+
+        <h2 class="blog-title">Frequently Asked Questions FAQ</h2>
+        <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-11 blog-main">
+
+          <div class="blog-post">
+            <h3>Q. What is this project?</h3>
+            <p>
+                 This project exposes the <b>current load status</b> on the electric power grid in Egypt as a web service (or an API) so other developers can build other applications on top of it.
+            </p>
+            <br />
+            <h3>Q. Where does your data come from?</h3>
+            <p>
+                This service parses the data on the
+                <a href="http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx" target="_blank">Load Meter</a>
+                 provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency
+                 (<a href="http://egyptera.org/ar/" target="_blank">EGYPTERA</a>) and exposes it.
+            </p>
+
+            <br />
+            <h3>Q. Is this data reliable?</h3>
+            <p>
+                Most probably yes! But even if it is not, it is official, i.e. this is the officially publicly availed data by the government.
+            </p>
+
+            <br />
+            <h3>Q. Is this data region/location based?</h3>
+            <p>
+                Unfortunately, no! We are limited by the data provided by EGYPTERA's load meter.
+                They only provide the current load status across the whole Egypt's electric power grid.
+            </p>
+
+            <br />
+            <h3>Q. The power went out but the API shows the load status is green, why is that?</h3>
+            <p>
+                This web service or API only provides the <b>current load status</b> on the electric grid in Egypt.
+                It does not necessarily reflect power outages. It is more likely power will go out if the load meter shows the load is in the danger zone rather than the safe zone. But being in the safe zone does NOT mean power won't go out too!
+                <br /><br />
+                It is worth noting that power in Egypt, as many other things, doesn't always comply with logic!
+            </p>
+
+            <br />
+            <h3>Q. Ok, but why was the load status green during the long country wide power outage on Thursday, September 4th?</h3>
+            <p>
+                Ironically, because power was out in most of the country, there was no electric consumption at all, thus there was no load whatsoever
+                on the network and the load meter was as green as a forest!
+            </p>
+
+            <br />
+            <h3>Q. Do you keep track/history of the data/readings?</h3>
+            <p>
+                Yes! We have a cron job that runs every ten minutes and saves a reading into our database.
+                Those readings are used to populate the <b>load distribution graphs</b> in the <a href="{{ path('history') }}">history section</a>
+                of the website.
+
+                <br /><br />
+
+                We plan on expanding the API as soon as possible to expose this historical data as well.
+            </p>
+
+            <br />
+            <h3>Q. Is this service free?</h3>
+            <p>
+                Yes!
+            </p>
+
+            <br />
+            <h3>Q. Will this service stay free?</h3>
+            <p>
+                I have no idea! Hopefully, yes!
+            </p>
+
+
+            <br />
+            <h3>Q. Is the source code for this project available?</h3>
+            <p>
+                Yes! You can find it <a href="https://githcurrentub.com/mos3abof/power-grid-staus" target="_blank">on Github</a>.
+            </p>
+
+            <br />
+            <h3>Q. Can I embed your load meter in my website?</h3>
+            <p>
+                Unfortunately, not yet! However, there is a <a href="http://kashwaa.github.io/loadmeter/" target="_blank">load meter</a> developed by <a href="https://github.com/kashwaa" target="_blank">Kareem Kashwaa</a> that you can emnbed.
+            </p>
+
+            <br />
+            <h3>Q. How is this project/service licensed?</h3>
+            <p>
+                The source code for this project is licensed under a
+                <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU General Public License Version 2.0</a>.
+
+                The API service doesn't have a license yet.
+            </p>
+
+            <br />
+            <h3>Q. Who is the creator/maintainer of this project?</h3>
+            <p>
+                Hello, my name is <a href="http://www.mos3abof.com" target="_blank">Mosab Ahmad</a>. I started working on this project after a <a href="http://eg.okfn.org/2014/08/egyptera_current_load/" target="_blank">post</a> written by <a href="http://tarekamr.appspot.com/" target="_blank">Tarek Amr</a> intrigued me. There are also a couple of contributors to the project
+                <a href="https://github.com/mos3abof/power-grid-staus" target="_blank">on Github</a>.
+            </p>
+
+            <br />
+            <h3>Q. I have an idea/question/feedback, how can I contact the maintainer?</h3>
+            <p>
+                You can email the maintainer on <b>info@gridstatusnow.com</b>.
+            </p>
+
+
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+
+{% endblock %}

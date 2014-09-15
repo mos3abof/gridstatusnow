@@ -1,21 +1,25 @@
 home_page:
     pattern:  /
     defaults: { _controller: PowerGridBundle:Default:index }
-    
+
 status:
     pattern:  /status
     defaults: { _controller: PowerGridBundle:Default:status }
-    
+
 history:
     pattern:  /history
     defaults: { _controller: PowerGridBundle:Default:history }
-    
-    
+
+
 history_archive:
     pattern: /history/{month}
     defaults: { _controller: PowerGridBundle:Default:history }
 
+faq:
+    pattern: /faq
+    defaults: { _controller: PowerGridBundle:Default:faq}
+
 # power_grid:
     # resource: "@PowerGridBundle/Resources/config/routing.yml"
     # prefix:   /
-# 
+#

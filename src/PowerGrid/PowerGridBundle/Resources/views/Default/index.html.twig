@@ -17,15 +17,15 @@
 
 
 
-{% block title %}Egypt Power Grid Load Status{% endblock %}
+{% block title %}Home | Power Grid Load Status As A Web Service{% endblock %}
 
 {% block fb %}
 	<meta property="og:type" content="website"/>
     <meta property="og:url" content="http://power-grid-status.mos3abof.com/"/>
-    <meta property="og:title" content="Power Grid Load Status"/>
+    <meta property="og:title" content="Power Grid Load Status As A Web Service"/>
     <meta property="og:description" content="This is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA)."/>
     <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
-    
+
 {% endblock %}
 
 {% block home_active %} active{% endblock %}
@@ -33,7 +33,7 @@
 
 {% block content %}
 <div class="blog-header">
-        <h1 class="blog-title">Power Grid Load Status</h1>
+        <h1 class="blog-title">Power Grid Load Status As A Web Service</h1>
         <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
       </div>
 
@@ -43,7 +43,7 @@
 
           <div class="blog-post">
             <p>
-            	According to The Egyptian Electric Utility and Consumer Protection Regulatory Agency, 
+            	According to The Egyptian Electric Utility and Consumer Protection Regulatory Agency,
             	the current load on Egypt's electric power grid is now in the :
             </p>
             <p>
@@ -56,72 +56,87 @@
             	It also shows the load distribution throughout the day's hours, which I plan to incorporate soon.
             </p>
             <hr>
+            <h2>API</h2>
+
+            <h3>Calling the API</h3>
             <p>
             	To grab the result above programmatically in JSON format use this URL :
-            	
-            	<pre>http://power-grid-status.mos3abof.com/status</pre>
+
+            	<pre>http://www.gridstatusnow.com/status</pre>
             </p>
             <p>
             	Example output :
-            	
+
             	<pre>{"status":"Danger"}</pre>
             </p>
             <p>
-            	As mentioned above, the EGYPTERA load meter only depicts three values for the power grid load status, 
-            	so the value of the JSON object will be either   
+            	As mentioned above, the EGYPTERA load meter only depicts three values for the power grid load status,
+            	so the value of the JSON object will be either
             	<code>Danger</code>, <code>Warning</code> or <code>Safe</code>.
             	If the API fails to open and/or parse the source it will return the response <code>Unknown</code>
             </p>
-            <hr />
+            <h3>An example Python script using the API</h3>
             <p>
-            	 Here is a python snippet that calls the API : 
             	 <pre>#!/usr/bin/python
 # -*- coding: utf-8 -*-
-#@author Mosab Ahmad 
+#@author Mosab Ahmad
 
 import requests
 import json
 
-status = json.loads(requests.get('http://power-grid-status.mos3abof.com/status').text)
+status = json.loads(requests.get('http://www.gridstatusnow.com/status').text)
 
 print 'Power grid is now in the {} Zone!'.format(status['status'])
             	 </pre>
-            	 
+
             	 An example output :
             	 <pre>Power grid is now in the Danger Zone!</pre>
             </p>
-            <hr />
-            <p>
-            	This project was inspired by 
-            	<a href="http://eg.okfn.org/2014/08/egyptera_current_load/" target="_blank">this post</a> 
-            	by 
-            	<a href="http://tarekamr.appspot.com/" target="_blank">Tarek Amr</a>
-            	 on Open Knowledge Foundation Egypt. 
-            </p>
-            
-            <p>
-            	If you build anything using this tool, please share it with me. I would love to see your creations :)
-            	Please contact me at : grid.monitor@mos3abof.com. All feedback is welcome.
-            </p>
-            <!--<p>
-            	According to the same source, here is the load distribution throughout today :
-            	
-            	
-            	
-            </p>-->
-            
-            <hr />
-            <p>Disclaimer :</p>
-            <p>
-            	This service is created and its code is open sourced in the hope that it will be useful, 
-            	but WITHOUT ANY WARRANTY; without even the implied warranty of
-            	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
-			</p>
-			<p>
-				See the
 
-				<a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">GNU General Public License</a> for more details.
+            <hr />
+            <h2>Applications built using this API</h2>
+            <p>
+                <ul>
+                    <li>
+                        "Yalahweey", a desktop notification tool in Go programming language using the API written by Ahmad Saif. He published it
+                        <a href="https://github.com/asaif/yalahweey" target="_blank">on Github</a>.
+                        I personally use this tool and I am happy with it :)
+                    </li>
+                    <li>
+                        Amir Aly from Delta Code created a bot that checks the API for load status and then it
+                        tweets  (on <a href="https://twitter.com/Egylectricity" target="_blank">@Egylectricity</a>)
+                        and updates
+                        <a href="https://www.facebook.com/Egylectricity" target="_blank">Egylectricity</a>
+                        facebook page accordingly.
+                    </li>
+                </ul>
             </p>
+
+            <hr />
+            <h2>Project Featured On</h2>
+            <p>
+                <ul>
+                    <li>
+                        Tarek Amr <a href="http://eg.okfn.org/2014/08/%D9%82%D9%8A%D8%A7%D8%B3-%D8%AD%D8%A7%D9%84%D8%A9-%D8%A7%D9%84%D8%A3%D8%AD%D9%85%D8%A7%D9%84-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%B4%D8%A8%D9%83%D8%A9-%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6/" target="_blank">wrote a post</a> on Open Knowledge Foundation Egypt.
+                    </li>
+                    <li>
+                        "The Press Daily" TV show on Alnahar Alyoum channel. (watch
+                        <a href="https://www.youtube.com/watch?v=o2amh54k3eQ" target="_blank">from minute 17 to minute 27</a>).
+                    </li>
+                    <li>
+                        <a href="http://okfegypt.github.io/egypt-hacks.html" target="_blank">Egypt Civic Hacks</a>.
+                    </li>
+                </ul>
+            </p>
+
+
+            <hr />
+            <h2>Disclaimer</h2>
+            <p>
+            	This service is created and its code is open sourced in the hope that it will be useful,
+            	but WITHOUT ANY WARRANTY; without even the implied warranty of
+            	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+			</p>
           </div><!-- /.blog-post -->
 
         </div><!-- /.blog-main -->
@@ -130,36 +145,41 @@ print 'Power grid is now in the {} Zone!'.format(status['status'])
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
             <p>
-            	
-              	This service parses the data in the 
+
+              	This service parses the data in the
             	<a href="http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx" target="_blank" style="text-decoration:underline;">Load Meter</a>
-            	 provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency 
+            	 provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency
             	 (<a href="http://egyptera.org/ar/" target="_blank" style="text-decoration:underline;">EGYPTERA</a>)
             	 and presents it in a more human friendly way.
             	 </p><p>
             	 It also provides an API so other developers can build other web and mobile applications on top of it.
-			  
+
+
+
 			</p>
+
+            <p>
+                This project was inspired by
+                <a href="http://eg.okfn.org/2014/08/egyptera_current_load/" target="_blank">this post</a>
+                by
+                <a href="http://tarekamr.appspot.com/" target="_blank">Tarek Amr</a>
+                 on Open Knowledge Foundation Egypt.
+            </p>
+
+            <p>
+                If you build anything using this tool, please share it with me. I would love to see your creations :)
+                Please contact me at : grid.monitor@mos3abof.com. All feedback is welcome.
+            </p>
           </div>
-          <!--
+
           <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4>Load Distribution Graphs</h4>
             <ol class="list-unstyled">
-              <li><a href="#">March 2014</a></li>
-              <li><a href="#">February 2014</a></li>
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
+              <li><a href="{{ path('history_archive', {'month' : 'august'}) }}">August 2014</a></li>
+              <li><a href="{{ path('history_archive', {'month' : 'september'}) }}">September 2014</a></li>
             </ol>
-          </div>--><!-- /.blog-sidebar -->
+          </div><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
-      
+
 {% endblock %}
