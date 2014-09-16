@@ -15,6 +15,18 @@ history_archive:
     pattern: /history/{month}
     defaults: { _controller: PowerGridBundle:Default:history }
 
+api:
+    pattern: /api
+    defaults: { _controller: PowerGridBundle:Default:api}
+
+about:
+    pattern: /about
+    defaults: { _controller: PowerGridBundle:Default:about}
+
+contact:
+    pattern: /contact
+    defaults: { _controller: PowerGridBundle:Default:contact}
+
 faq:
     pattern: /faq
     defaults: { _controller: PowerGridBundle:Default:faq}

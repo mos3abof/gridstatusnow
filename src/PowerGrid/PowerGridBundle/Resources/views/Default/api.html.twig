@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}API Documentation | Power Grid Load Status As A Web Service{% endblock %}
+
+{% block fb %}
+	<meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://power-grid-status.mos3abof.com/"/>
+    <meta property="og:title" content="Power Grid Load Status As A Web Service FAQ"/>
+    <meta property="og:description" content="Frequently asked questions about Power Grid Load Status As A Web Service project."/>
+    <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
+
+{% endblock %}
+
+{% block api_active %} active{% endblock %}
+
+
+{% block content %}
+<div class="blog-header">
+        <h1>Power Grid Load Status As A Web Service &raquo;</h1>
+
+        <h2 class="blog-title">API Documentation</h2>
+        <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-11 blog-main">
+
+          <div class="blog-post">
+            <h2>Overview</h2>
+            <p>
+                For now, this API only exposes the current load status. But we plan on adding other functionalities soon.
+            </p>
+            <hr/>
+
+            <h2>REST API</h2>
+            <h3>GET /status</h3>
+
+            <h4>Description</h4>
+                Get the current load status in JSON format.
+                <br />
+                Unfortunately, the EGYPTERA load meter only depicts three values for the power grid load status,
+                so the value of the JSON object will be either
+                <code>Danger</code>, <code>Warning</code> or <code>Safe</code>.
+                If the API fails to open and/or parse the source it will return the response <code>Unknown</code>.
+                <br />
+                <br />
+            <h4>Example Request</h4>
+                <pre>http://www.gridstatusnow.com/status</pre>
+                <br />
+
+            <h4>Example Response</h4>
+                <pre>{"status":"Danger"}</pre>
+                <br />
+            <hr />
+            <h2>Examples</h2>
+            <h3>Python Example</h3>
+            <p>
+                 <pre>#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#@author Mosab Ahmad
+
+import requests
+import json
+
+status = json.loads(requests.get('http://www.gridstatusnow.com/status').text)
+
+print 'Power grid is now in the {} Zone!'.format(status['status'])
+                 </pre>
+
+                 Output :
+                 <pre>Power grid is now in the Danger Zone!</pre>
+            </p>
+
+            <hr />
+            <h2>List Of Applications Using This API</h2>
+            <p>
+                <ul>
+                    <li>
+                        "Yalahweey", a desktop notification tool in Go programming language using the API written by Ahmad Saif. He published it
+                        <a href="https://github.com/asaif/yalahweey" target="_blank">on Github</a>.
+                        I personally use this tool and I am happy with it :)
+                    </li>
+                    <li>
+                        Amir Aly from Delta Code created a bot that checks the API for load status and then it
+                        tweets  (on <a href="https://twitter.com/Egylectricity" target="_blank">@Egylectricity</a>)
+                        and updates
+                        <a href="https://www.facebook.com/Egylectricity" target="_blank">Egylectricity</a>
+                        facebook page accordingly.
+                    </li>
+                </ul>
+            </p>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+
+{% endblock %}

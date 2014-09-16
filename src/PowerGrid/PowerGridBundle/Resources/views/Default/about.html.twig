@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}About Us | Power Grid Load Status As A Web Service{% endblock %}
+
+{% block fb %}
+	<meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://power-grid-status.mos3abof.com/"/>
+    <meta property="og:title" content="Power Grid Load Status As A Web Service FAQ"/>
+    <meta property="og:description" content="Frequently asked questions about Power Grid Load Status As A Web Service project."/>
+    <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
+
+{% endblock %}
+
+{% block about_active %} active{% endblock %}
+
+
+{% block content %}
+<div class="blog-header">
+        <h1>Power Grid Load Status As A Web Service &raquo;</h1>
+
+        <h2 class="blog-title">About Us</h2>
+        <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-11 blog-main">
+
+          <div class="blog-post">
+            <p>
+
+                This service parses the data in the
+                <a href="http://loadmeter.egyptera.org/MiniCurrentLoadClock3.aspx" target="_blank" style="text-decoration:underline;">Load Meter</a>
+                 provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency
+                 (<a href="http://egyptera.org/ar/" target="_blank" style="text-decoration:underline;">EGYPTERA</a>)
+                 and presents it in a more human friendly way.
+            </p>
+
+            <p>
+                 It also provides an API so other developers can build other web and mobile applications on top of it.
+            </p>
+
+            <p>
+                This project was inspired by
+                <a href="http://eg.okfn.org/2014/08/egyptera_current_load/" target="_blank">this post</a>
+                by
+                <a href="http://tarekamr.appspot.com/" target="_blank">Tarek Amr</a>
+                 on Open Knowledge Foundation Egypt.
+            </p>
+
+            <p>
+                If you build anything using this tool, please share it with me. I would love to see your creations :)
+                Please contact me at : <b>info@gridstatusnow.com</b>. All feedback is welcome.
+            </p>
+
+            <hr />
+            <h2>Project Featured On</h2>
+            <p>
+                <ul>
+                    <li>
+                        Tarek Amr <a href="http://eg.okfn.org/2014/08/%D9%82%D9%8A%D8%A7%D8%B3-%D8%AD%D8%A7%D9%84%D8%A9-%D8%A7%D9%84%D8%A3%D8%AD%D9%85%D8%A7%D9%84-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%B4%D8%A8%D9%83%D8%A9-%D8%A7%D9%84%D9%83%D9%87%D8%B1%D8%A8%D8%A7%D8%A6/" target="_blank">wrote a post</a> on Open Knowledge Foundation Egypt.
+                    </li>
+                    <li>
+                        "The Press Daily" TV show on Alnahar Alyoum channel. (watch
+                        <a href="https://www.youtube.com/watch?v=o2amh54k3eQ" target="_blank">from minute 17 to minute 27</a>).
+                    </li>
+                    <li>
+                        <a href="http://okfegypt.github.io/egypt-hacks.html" target="_blank">Egypt Civic Hacks</a>.
+                    </li>
+                </ul>
+            </p>
+
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+
+{% endblock %}

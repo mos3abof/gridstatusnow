@@ -69,9 +69,24 @@ class DefaultController extends Controller
         return $this->render('PowerGridBundle:Default:history.html.twig', array('month' => $month, 'd3_days' => $d3_days));
     }
 
+    public function ApiAction()
+    {
+        return $this->render('PowerGridBundle:Default:api.html.twig');
+    }
+
+    public function AboutAction()
+    {
+        return $this->render('PowerGridBundle:Default:about.html.twig');
+    }
+
     public function FaqAction()
     {
         return $this->render('PowerGridBundle:Default:faq.html.twig');
+    }
+
+    public function ContactAction()
+    {
+        return $this->render('PowerGridBundle:Default:contact.html.twig');
     }
 
 }
