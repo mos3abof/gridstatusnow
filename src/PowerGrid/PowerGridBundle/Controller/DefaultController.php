@@ -11,7 +11,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('PowerGridBundle:Default:index.html.twig', array('status' => $this->get('power_grid_service')->getStatus()));
+        $today = time();
+        $current_date = date('l, F jS', $today+36000);
+        return $this->render('PowerGridBundle:Default:index.html.twig', array('status' => $this->get('power_grid_service')->getStatus(), 'today' => $current_date));
     }
 
     public function statusAction()

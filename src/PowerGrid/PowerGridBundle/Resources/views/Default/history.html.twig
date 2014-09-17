@@ -1,12 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Egypt Power Grid Load Distribution Graph | Power Grid Load Status As A Web Service{% endblock %}
+{% block title %}Load History | Grid Status Now{% endblock %}
 
 {% block fb %}
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="http://power-grid-status.mos3abof.com/history"/>
-<meta property="og:title" content="Egypt Power Grid Load Distribution Graph"/>
-<meta property="og:description" content="How is the power load throughout the day hours. Each row represents a day, and every block stands for an hour of the day starting at 12 am and finishing at 12 am the next day."/>
+<meta property="og:title" content="Load History | Grid Status Now"/>
+<meta property="og:description" content="Graphs showing how is the power load throughout the day hours. Each row represents a day, and every block stands for an hour of the day starting at 12 am and finishing at 12 am the next day."/>
 <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
 {% endblock %}
 
@@ -18,7 +18,7 @@
 	<div class="blog-post">
 		<div class="blog-header">
 
-			<h1>Power Grid Load Status As A Web Service &raquo;</h1>
+			<h1>Grid Status Now &raquo;</h1>
 
         	<h2 class="blog-title">Load Distribution in {{month|title}}, 2014</h2>
 
@@ -40,7 +40,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 120 },
 
 days = {{ d3_days|raw }}
 
-width = 960 - margin.left - margin.right,
+width = 940 - margin.left - margin.right,
 height = 1175 - margin.top - margin.bottom,
 //height = ((days.length * 36) + 30) - margin.top - margin.bottom,
 //height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
