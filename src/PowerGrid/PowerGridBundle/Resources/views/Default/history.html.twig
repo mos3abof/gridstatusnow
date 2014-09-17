@@ -4,10 +4,17 @@
 
 {% block fb %}
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="http://power-grid-status.mos3abof.com/history"/>
+<meta property="og:url" content="http://www.gridstatusnow.com/history"/>
 <meta property="og:title" content="Load History | Grid Status Now"/>
 <meta property="og:description" content="Graphs showing how is the power load throughout the day hours. Each row represents a day, and every block stands for an hour of the day starting at 12 am and finishing at 12 am the next day."/>
 <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
+
+	<meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@gridstatusnow">
+    <meta name="twitter:creator" content="@mos3abof">
+    <meta name="twitter:title" content="Load History | Grid Status Now">
+    <meta name="twitter:description" content="Graphs showing how is the power load throughout the day hours. Each row represents a day, and every block stands for an hour of the day starting at 12 am and finishing at 12 am the next day.">
+    <meta name="twitter:image:src" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg">
 {% endblock %}
 
 {% block history_active %} active{% endblock %}
@@ -41,7 +48,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 120 },
 days = {{ d3_days|raw }}
 
 width = 940 - margin.left - margin.right,
-height = 1175 - margin.top - margin.bottom,
+height = 1120 - margin.top - margin.bottom,
 //height = ((days.length * 36) + 30) - margin.top - margin.bottom,
 //height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
 gridSize = Math.floor(width / 24),

@@ -21,10 +21,17 @@
 
 {% block fb %}
 	<meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://power-grid-status.mos3abof.com/"/>
+    <meta property="og:url" content="http://www.gridstatusnow.com/"/>
     <meta property="og:title" content="Grid Status Now | Egypt's Power Grid Load Status As A Web Service"/>
     <meta property="og:description" content="Grid Status Now is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA) and exposing that data in a resuable way."/>
     <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@gridstatusnow">
+    <meta name="twitter:creator" content="@mos3abof">
+    <meta name="twitter:title" content="Grid Status Now | Egypt's Power Grid Load Status As A Web Service">
+    <meta name="twitter:description" content="Grid Status Now is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA) and exposing that data in a resuable way.">
+    <meta name="twitter:image:src" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg">
 
 {% endblock %}
 
@@ -59,10 +66,9 @@
                     (<a href="http://egyptera.org/ar/" target="_blank">EGYPTERA</a>).
                 </em>
             </p>
-            <br />
 
             <hr />
-            <h2>Power Load Distribution Throughout Today<sup style="color:red;">**</sup></h2>
+            <h2>Power Load Distribution Throughout Today</h2>
             {{ today }}
             <p>
                 <div id="week-1"></div>
@@ -82,7 +88,7 @@
                 </p>
                 <p>
                     <em>
-                        <sup style="color:red;">**</sup>Each block stands for an hour of the day starting at 12 am and finishing at 12 am the next day.
+                        Each block stands for an hour of the day starting at 12 am and finishing at 12 am the next day.
                         Each block's color represents how the power load was most of that hour with a color code,
                         green for safe, yellow for warning and red for danger.
                     </em>
