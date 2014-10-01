@@ -25,21 +25,21 @@
 	<div class="blog-post">
 		<div class="blog-header">
 
-			<h1>Grid Status Now &raquo;</h1>
+			<h1><i class="fa fa-bolt"></i> Grid Status Now &raquo;</h1>
 
         	<h2 class="blog-title">Load Distribution in {{month|title}}, 2014</h2>
 
 			<div id="week-1"></div>
 			Legend :
-			<button type="button" class="btn btn-success">
-				Normal
-			</button>
-			<button type="button" class="btn btn-warning">
-				Warning
-			</button>
-			<button type="button" class="btn btn-danger">
-				Danger
-			</button>
+            <span class="btn btn-success" style="cursor:default;">
+                Normal
+            </span>
+            <span class="btn btn-warning"  style="cursor:default;">
+                Warning
+            </span>
+            <span class="btn btn-danger" style="cursor:default;">
+                Danger
+            </span>
 
 			<script type="text/javascript">
 var margin = { top: 50, right: 0, bottom: 100, left: 120 },
@@ -116,7 +116,7 @@ var heatMap = svg.selectAll(".hour")
 heatMap.transition().duration(1000)
 .style("fill", function(d) { return colorScale(d.value); });
 
-heatMap.append("title").text(function(d) { return d.value; });
+// heatMap.append("title").text(function(d) { return d.value; });
 
 });
 			</script>

@@ -44,7 +44,7 @@
 
 
 <div class="blog-header">
-        <h1 class="blog-title">Grid Status Now</h1>
+        <h1 class="blog-title"><i class="fa fa-bolt"></i> Grid Status Now</h1>
         <h2>Egypt's Power Grid Load Status As A Web Service</h2>
         <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
       </div>
@@ -75,15 +75,15 @@
                 <p>
                 <br />
                 Legend :
-                <button type="button" class="btn btn-success">
+                <span class="btn btn-success" style="cursor:default;">
                     Normal
-                </button>
-                <button type="button" class="btn btn-warning">
+                </span>
+                <span class="btn btn-warning"  style="cursor:default;">
                     Warning
-                </button>
-                <button type="button" class="btn btn-danger">
+                </span>
+                <span class="btn btn-danger" style="cursor:default;">
                     Danger
-                </button>
+                </span>
                 <br /><br />
                 </p>
                 <p>
@@ -194,7 +194,7 @@ var heatMap = svg.selectAll(".hour")
 heatMap.transition().duration(1000)
 .style("fill", function(d) { return colorScale(d.value); });
 
-heatMap.append("title").text(function(d) { return d.value; });
+// heatMap.append("title").text(function(d) { return d.value; });
 
 });
             </script>
