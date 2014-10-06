@@ -7,35 +7,37 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Status
  *
- * @ORM\Table(name="status")
- * @ORM\Entity
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="PowerGrid\PowerGridBundle\Entity\StatusRepository")
  */
 class Status
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string", length=10, nullable=false)
-     */
-    private $status;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="timestamp", type="datetime", nullable=false)
-     */
-    private $timestamp;
-
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=100)
+     */
+    private $status;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set status
@@ -53,12 +55,19 @@ class Status
     /**
      * Get status
      *
-     * @return string 
+     * @return string
      */
     public function getStatus()
     {
         return $this->status;
     }
+
+
+    /**
+     * @var \DateTime
+     */
+    private $timestamp;
+
 
     /**
      * Set timestamp
@@ -76,20 +85,10 @@ class Status
     /**
      * Get timestamp
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimestamp()
     {
         return $this->timestamp;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 }

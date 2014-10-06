@@ -11,8 +11,13 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $today = time();
-        $current_date = date('l, F jS', $today+36000);
+
+        $tz = $this->container->getParameter('default_timezone');
+        $plus = $this->container->getParameter('gmt_as_number');
+        $date = new \DateTime("now");
+        $date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus .' hour');
+
+        $current_date = $date->format('l, F jS');
         return $this->render('PowerGridBundle:Default:index.html.twig', array('status' => $this->get('power_grid_service')->getStatus(), 'today' => $current_date));
     }
 
@@ -21,11 +26,12 @@ class DefaultController extends Controller
         return new JsonResponse( array('status' => $this->get('power_grid_service')->getStatus()));
     }
 
-    public function historyAction($month = 'september')
+    public function historyAction($month = 'october')
     {
         $allowed_months = array(
             'august',
-            'september'
+            'september',
+            'october'
         );
 
         $year = 2014;
@@ -59,6 +65,7 @@ class DefaultController extends Controller
         $days_number = cal_days_in_month(CAL_GREGORIAN, $month_number[$month], $year);
 
         $start_date = $year . '-' . $month_number[$month] . '-01';
+
         // Give in your own start date
         $start_day = date('z', strtotime($start_date));
 
@@ -66,7 +73,7 @@ class DefaultController extends Controller
             $date = strtotime(date("Y-m-d", strtotime($start_date)) . " $i day");
             $d3_days .=  '"' . date('l jS', $date) . '",';
         }
-        $d3_days .= ']';
+        $d3_days .= '];';
 
         return $this->render('PowerGridBundle:Default:history.html.twig', array('month' => $month, 'd3_days' => $d3_days));
     }
@@ -90,5 +97,4 @@ class DefaultController extends Controller
     {
         return $this->render('PowerGridBundle:Default:contact.html.twig');
     }
-
 }

@@ -7,33 +7,88 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Status
  *
- * @ORM\Table(name="status")
- * @ORM\Entity
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="PowerGrid\PowerGridBundle\Entity\StatusRepository")
  */
 class Status
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=10, nullable=false)
+     * @ORM\Column(name="status", type="string", length=100)
      */
     private $status;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="timestamp", type="datetime", nullable=false)
+     * @ORM\Column(name="parsed_at", type="datetime")
      */
-    private $timestamp;
+    private $parsedAt;
+
 
     /**
-     * @var integer
+     * Get id
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @return integer 
      */
-    private $id;
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set parsedAt
+     *
+     * @param \DateTime $parsedAt
+     * @return Status
+     */
+    public function setParsedAt($parsedAt)
+    {
+        $this->parsedAt = $parsedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get parsedAt
+     *
+     * @return \DateTime 
+     */
+    public function getParsedAt()
+    {
+        return $this->parsedAt;
+    }
 }

@@ -61,6 +61,8 @@ times = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", 
 d3.tsv("{{ asset('august.tsv')}}",
 {% elseif month == 'september' %}
 d3.tsv("{{ asset('september.tsv')}}",
+{% elseif month == 'october' %}
+d3.tsv("{{ asset('october.tsv')}}",
 {% endif %}
 
 function(d) {
