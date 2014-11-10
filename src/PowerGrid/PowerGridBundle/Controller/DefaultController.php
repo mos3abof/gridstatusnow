@@ -26,12 +26,13 @@ class DefaultController extends Controller
         return new JsonResponse( array('status' => $this->get('power_grid_service')->getStatus()));
     }
 
-    public function historyAction($month = 'october')
+    public function historyAction($month = 'november')
     {
         $allowed_months = array(
             'august',
             'september',
-            'october'
+            'october',
+	        'november'
         );
 
         $year = 2014;

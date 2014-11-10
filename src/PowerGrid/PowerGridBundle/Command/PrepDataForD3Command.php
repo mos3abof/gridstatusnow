@@ -26,7 +26,7 @@ class PrepDataForD3Command extends ContainerAwareCommand
 	{
 		try
         {
-            $current_month = 'october';
+            $current_month = 'november';
 
             // prepare today's data
             $repository = $this->getContainer()->get('doctrine')->getRepository('PowerGridBundle:Status');
