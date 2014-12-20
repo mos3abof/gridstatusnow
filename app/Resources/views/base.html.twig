@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -14,7 +14,7 @@
     <link rel="icon" href="./favicon.ico">
 
     <title>
-    	{% block title %} {% endblock %}
+        {% block title %} {% endblock %}
     </title>
 
     <!-- Bootstrap core CSS -->
@@ -31,7 +31,8 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -39,110 +40,106 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	 <style>
+    <style>
 
-   body, h1, h2, h3, h4, p, div, span
-   {
-    font-family: 'Vollkorn', serif !important;
-   }
+        body, h1, h2, h3, h4, p, div, span {
+            font-family: 'Vollkorn', serif !important;
+        }
 
+        h2 {
+            font-size: 1.6em;
+        }
 
-   h2
-   {
-      font-size:1.6em;
-   }
+        h3 {
+            font-size: 1.3em;
+        }
 
-   h3
-   {
-      font-size:1.3em;
-   }
+        .axis {
+            font: 10px sans-serif;
+        }
 
-	 .axis {
-	   font: 10px sans-serif;
-	 }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
 
-	 .axis path,
-	 .axis line {
-	   fill: none;
-	   stroke: #000;
-	   shape-rendering: crispEdges;
-	 }
+        rect.bordered {
+            stroke: #E6E6E6;
+            stroke-width: 2px;
+        }
 
-	  rect.bordered {
-        stroke: #E6E6E6;
-        stroke-width:2px;
-      }
+        text.mono {
+            font-size: 9pt;
+            font-family: Consolas, courier;
+            fill: #aaa;
+        }
 
-      text.mono {
-        font-size: 9pt;
-        font-family: Consolas, courier;
-        fill: #aaa;
-      }
+        text.axis-workweek {
+            fill: #000;
+        }
 
-      text.axis-workweek {
-        fill: #000;
-      }
+        text.axis-worktime {
+            fill: #000;
+        }
 
-      text.axis-worktime {
-        fill: #000;
-      }
+        i {
+            color: #5CB85C;
+        }
 
-      i
-      {
-        color:#5CB85C;
-      }
+    </style>
 
-	 </style>
-
-	  <script src="http://d3js.org/d3.v3.js"></script>
-    </head>
-    <body>
-    	 <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item {% block home_active %} {% endblock %}" href="{{ path('home_page') }}">Home</a>
-          <a class="blog-nav-item {% block history_active %} {% endblock %}" href="{{ path('history') }}">Load History</a>
-          <a class="blog-nav-item {% block api_active %} {% endblock %}" href="{{ path('api') }}">API</a>
-          <a class="blog-nav-item {% block about_active %} {% endblock %}" href="{{ path('about') }}">About</a>
-          <a class="blog-nav-item {% block faq_active %} {% endblock %}" href="{{ path('faq') }}">FAQ</a>
-          <a class="blog-nav-item {% block contact_active %} {% endblock %}" href="{{ path('contact') }}">Contact</a>
-          <a class="blog-nav-item" href="https://github.com/mos3abof/power-grid-staus" target="_blank">Github</a>
-        </nav>
-      </div>
-    </div>
-
-
+    <script src="http://d3js.org/d3.v3.js"></script>
+</head>
+<body>
+<div class="blog-masthead">
     <div class="container">
-
-	{% block content %}{% endblock %}
-
-
-
-
-    </div><!-- /.container -->
-
-    <div class="blog-footer">
-      <p>
-      	Created by <a href="http://www.mos3abof.com" target="_blank">@mos3abof</a>
-      	using <a href="http://www.symfony.com" target="_blank">Symfony</a>,
-      	<a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> and
-      	<a href="http://d3js.org/" target="_blank">D3</a>.
-      </p>
-      <p>
-      	Hosted on <a href="http://www.dreamhost.com/r.cgi?1017456" target="_blank">DreamHost</a>.
-      </p>
+        <nav class="blog-nav">
+            <a class="blog-nav-item {% block home_active %} {% endblock %}" href="{{ path('home_page') }}">Home</a>
+            <a class="blog-nav-item {% block history_active %} {% endblock %}" href="{{ path('history') }}">Load
+                History</a>
+            <a class="blog-nav-item {% block api_active %} {% endblock %}" href="{{ path('api') }}">API</a>
+            <a class="blog-nav-item {% block about_active %} {% endblock %}" href="{{ path('about') }}">About</a>
+            <a class="blog-nav-item {% block faq_active %} {% endblock %}" href="{{ path('faq') }}">FAQ</a>
+            <a class="blog-nav-item {% block contact_active %} {% endblock %}" href="{{ path('contact') }}">Contact</a>
+            <a class="blog-nav-item" href="https://github.com/mos3abof/power-grid-staus" target="_blank">Github</a>
+        </nav>
     </div>
+</div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-  </body>
+<div class="container">
+
+    {% block content %}{% endblock %}
+
+
+</div>
+<!-- /.container -->
+
+<div class="blog-footer">
+    <p>
+        Created by <a href="http://www.mos3abof.com" target="_blank">@mos3abof</a>
+        using <a href="http://www.symfony.com" target="_blank">Symfony</a>,
+        <a href="http://www.getbootstrap.com" target="_blank">Bootstrap</a> and
+        <a href="http://d3js.org/" target="_blank">D3</a>.
+    </p>
+
+    <p>
+        Hosted on <a href="http://www.dreamhost.com/r.cgi?1017456" target="_blank">DreamHost</a>.
+    </p>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+</body>
 </html>
