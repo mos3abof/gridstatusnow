@@ -12,7 +12,12 @@ history:
 
 
 history_archive:
-    pattern: /history/{month}
+    pattern: /history/{month_name}
+    defaults: { _controller: PowerGridBundle:Default:history }
+
+
+history_archive_month_and_year:
+    pattern: /history/{month_name}/{year}
     defaults: { _controller: PowerGridBundle:Default:history }
 
 api:
