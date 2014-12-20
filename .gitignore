@@ -12,3 +12,4 @@
 *.py
 *.sh
 app/config/parameters.yml
+.idea*
