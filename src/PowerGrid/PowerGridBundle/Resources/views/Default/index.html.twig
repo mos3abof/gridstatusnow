@@ -20,18 +20,22 @@
 {% block title %}Grid Status Now | Egypt's Power Grid Load Status As A Web Service{% endblock %}
 
 {% block fb %}
-	<meta property="og:type" content="website"/>
+    <meta property="og:type" content="website"/>
     <meta property="og:url" content="http://www.gridstatusnow.com/"/>
     <meta property="og:title" content="Grid Status Now | Egypt's Power Grid Load Status As A Web Service"/>
-    <meta property="og:description" content="Grid Status Now is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA) and exposing that data in a resuable way."/>
-    <meta property="og:image" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
+    <meta property="og:description"
+          content="Grid Status Now is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA) and exposing that data in a resuable way."/>
+    <meta property="og:image"
+          content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg"/>
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@gridstatusnow">
     <meta name="twitter:creator" content="@mos3abof">
     <meta name="twitter:title" content="Grid Status Now | Egypt's Power Grid Load Status As A Web Service">
-    <meta name="twitter:description" content="Grid Status Now is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA) and exposing that data in a resuable way.">
-    <meta name="twitter:image:src" content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg">
+    <meta name="twitter:description"
+          content="Grid Status Now is an attempt at parsing the data in the Load Meter provided by The Egyptian Electric Utility and Consumer Protection Regulatory Agency (EGYPTERA) and exposing that data in a resuable way.">
+    <meta name="twitter:image:src"
+          content="http://www.aecom.com/deployedfiles/Internet/Capabilities/Environment/Markets/Cropped_iStock_000003058682Medium_electric%20power%20lines.jpg">
 
 {% endblock %}
 
@@ -43,49 +47,55 @@
 
 
 
-<div class="blog-header">
+    <div class="blog-header">
         <h1 class="blog-title"><i class="fa fa-bolt"></i> Grid Status Now</h1>
+
         <h2>Egypt's Power Grid Load Status As A Web Service</h2>
         <!--<p class="lead blog-description">Egypt's power grid load monitor.</p>-->
-      </div>
+    </div>
 
-      <div class="row">
+    <div class="row">
 
         <div class="col-sm-12 blog-main">
 
-          <div class="blog-post">
-            <p>
+            <div class="blog-post">
+                <p>
+
                 <h3>Load on Egypt's electric power grid is in the<sup style="color:red;">*</sup>:</h3>
-                <span class="text-center text-capitalize btn-lg btn-block btn-{{status_class}}" style="font-size:1.5em;">
+                <span class="text-center text-capitalize btn-lg btn-block btn-{{ status_class }}"
+                      style="font-size:1.5em;">
                     {{ status_message }}
                 </span>
-            </p>
-            <p>
-                <em>
-                    <sup style="color:red;">*</sup>According to The Egyptian Electric Utility and Consumer Protection Regulatory Agency
-                    (<a href="http://egyptera.org/ar/" target="_blank">EGYPTERA</a>).
-                </em>
-            </p>
+                </p>
+                <p>
+                    <em>
+                        <sup style="color:red;">*</sup>According to The Egyptian Electric Utility and Consumer
+                        Protection Regulatory Agency
+                        (<a href="http://egyptera.org/ar/" target="_blank">EGYPTERA</a>).
+                    </em>
+                </p>
 
-            <hr />
-            <h2>Power Load Distribution Throughout Today</h2>
-            {{ today }}
-            <p>
+                <hr/>
+                <h2>Power Load Distribution Throughout Today</h2>
+                {{ today }}
+                <p>
+
                 <div id="week-1"></div>
                 <p>
-                <br />
-                Legend :
+                    <br/>
+                    Legend :
                 <span class="btn btn-success" style="cursor:default;">
                     Normal
                 </span>
-                <span class="btn btn-warning"  style="cursor:default;">
+                <span class="btn btn-warning" style="cursor:default;">
                     Warning
                 </span>
                 <span class="btn btn-danger" style="cursor:default;">
                     Danger
                 </span>
-                <br /><br />
+                    <br/><br/>
                 </p>
+
                 <p>
                     <em>
                         Each block stands for an hour of the day starting at 12 am and finishing at 12 am the next day.
@@ -93,113 +103,146 @@
                         green for safe, yellow for warning and red for danger.
                     </em>
                 </p>
-            </p>
-            <hr />
-            <h2>Archived Load Distribution Graphs Are Available For</h2>
-            <ol class="list-unstyled">
-                <li><a href="{{ path('history_archive', {'month' : 'november'}) }}">November 2014</a></li>
-                <li><a href="{{ path('history_archive', {'month' : 'october'}) }}">October 2014</a></li>
-                <li><a href="{{ path('history_archive', {'month' : 'september'}) }}">September 2014</a></li>
-                <li><a href="{{ path('history_archive', {'month' : 'august'}) }}">August 2014</a></li>
-            </ol>
+                </p>
+                <hr/>
+                <h2>Archived Load Distribution Graphs Are Available For</h2>
+                <ol class="list-unstyled">
+                    <li>
+                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'november', 'year' : 2014}) }}">November
+                            2014</a></li>
+                    <li>
+                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'october', 'year' : 2014}) }}">October
+                            2014</a></li>
+                    <li>
+                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'september', 'year' : 2014}) }}">September
+                            2014</a></li>
+                    <li>
+                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'august', 'year' : 2014}) }}">August
+                            2014</a></li>
+                </ol>
 
-            <hr />
-            <h2>Developers</h2>
-            <p>
-                Are you a software developer looking to integrate this data into your application?
-                This project provides a web service. Head to the <a href="{{ path('api') }}">API section</a> for more information.
-            </p>
+                <hr/>
+                <h2>Developers</h2>
 
-            <hr />
-            <h2>Disclaimer</h2>
-            <p>
-            	This service is created and its code is open sourced in the hope that it will be useful,
-            	but WITHOUT ANY WARRANTY; without even the implied warranty of
-            	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-			</p>
-          </div><!-- /.blog-post -->
+                <p>
+                    Are you a software developer looking to integrate this data into your application?
+                    This project provides a web service. Head to the <a href="{{ path('api') }}">API section</a> for
+                    more information.
+                </p>
 
-        </div><!-- /.blog-main -->
-      </div><!-- /.row -->
+                <hr/>
+                <h2>Disclaimer</h2>
+
+                <p>
+                    This service is created and its code is open sourced in the hope that it will be useful,
+                    but WITHOUT ANY WARRANTY; without even the implied warranty of
+                    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+                </p>
+            </div>
+            <!-- /.blog-post -->
+
+        </div>
+        <!-- /.blog-main -->
+    </div><!-- /.row -->
 
 
 
-<script type="text/javascript">
-var margin = { top: 30, right: 0, bottom: 0, left: 0 },
+    <script type="text/javascript">
+        var margin = {top: 30, right: 0, bottom: 0, left: 0},
 // days = ["Friday 1st", "Saturday 2nd", "Sunday 3rd", "Monday 4th", "Tuesday 5th", "Wednesday 6th", "Thursday 7th", "Friday 8th", "Saturday 9th", "Sunday 10th", "Monday 11th", "Tuesday 12th", "Wednesday 13th", "Thursday 14th", "Friday 15th", "Saturday 16th", "Sunday 17th", "Monday 18th", "Tuesday 19th", "Wednesday 20th", "Thursday 21st", "Friday 22nd", "Saturday 23rd", "Sunday 24th", "Monday 25th", "Tuesday 26th", "Wednesday 27th", "Thursday 28th", "Friday 29th", "Saturday 30th", "Sunday 31st",],
 
-days = [""]
+                days = [""]
 
-width = 940 - margin.left - margin.right,
-height = 75 - margin.top - margin.bottom,
+        width = 940 - margin.left - margin.right,
+                height = 75 - margin.top - margin.bottom,
 //height = ((days.length * 36) + 30) - margin.top - margin.bottom,
 //height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
-gridSize = Math.floor(width / 24),
-legendElementWidth = gridSize*2,
-buckets = 3,
-colors = ["#D43F3A","#EEA236","#4CAE4C"], // alternatively colorbrewer.YlGnBu[9]
-times = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
+                gridSize = Math.floor(width / 24),
+                legendElementWidth = gridSize * 2,
+                buckets = 3,
+                colors = ["#D43F3A", "#EEA236", "#4CAE4C"], // alternatively colorbrewer.YlGnBu[9]
+                times = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
 
-d3.tsv("{{ asset('today.tsv')}}",
+        d3.tsv("{{ asset('today.tsv')}}",
 
 
-function(d) {
-return {
-day: +d.day,
-hour: +d.hour,
-value: +d.value
-};
-},
-function(error, data) {
-var colorScale = d3.scale.quantile()
-.domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
-.range(colors);
+                function (d) {
+                    return {
+                        day: +d.day,
+                        hour: +d.hour,
+                        value: +d.value
+                    };
+                },
+                function (error, data) {
+                    var colorScale = d3.scale.quantile()
+                            .domain([0, buckets - 1, d3.max(data, function (d) {
+                                return d.value;
+                            })])
+                            .range(colors);
 
-var svg = d3.select("#week-1").append("svg")
-.attr("width", width + margin.left + margin.right)
-.attr("height", height + margin.top + margin.bottom)
-.append("g")
-.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-var dayLabels = svg.selectAll(".dayLabel")
-.data(days)
-.enter().append("text")
-.text(function (d) { return d; })
-.attr("x", 0)
-.attr("y", function (d, i) { return i * gridSize; })
-.style("text-anchor", "end")
-.attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+                    var svg = d3.select("#week-1").append("svg")
+                            .attr("width", width + margin.left + margin.right)
+                            .attr("height", height + margin.top + margin.bottom)
+                            .append("g")
+                            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                    var dayLabels = svg.selectAll(".dayLabel")
+                            .data(days)
+                            .enter().append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", 0)
+                            .attr("y", function (d, i) {
+                                return i * gridSize;
+                            })
+                            .style("text-anchor", "end")
+                            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
 //                .attr("class", function (d, i) { return ((i >= 1 && i <= 5) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
-.attr("class", function (d, i) {return "dayLabel mono axis axis-workweek"; });
+                            .attr("class", function (d, i) {
+                                return "dayLabel mono axis axis-workweek";
+                            });
 
-var timeLabels = svg.selectAll(".timeLabel")
-.data(times)
-.enter().append("text")
-.text(function(d) { return d; })
-.attr("x", function(d, i) { return i * gridSize; })
-.attr("y", 0)
-.style("text-anchor", "middle")
-.attr("transform", "translate(" + gridSize / 2 + ", -6)")
-.attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+                    var timeLabels = svg.selectAll(".timeLabel")
+                            .data(times)
+                            .enter().append("text")
+                            .text(function (d) {
+                                return d;
+                            })
+                            .attr("x", function (d, i) {
+                                return i * gridSize;
+                            })
+                            .attr("y", 0)
+                            .style("text-anchor", "middle")
+                            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+                            .attr("class", function (d, i) {
+                                return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis");
+                            });
 
-var heatMap = svg.selectAll(".hour")
-.data(data)
-.enter().append("rect")
-.attr("x", function(d) { return (d.hour - 1) * gridSize; })
-.attr("y", function(d) { return (d.day - 1) * gridSize; })
-.attr("rx", 4)
-.attr("ry", 4)
-.attr("class", "hour bordered")
-.attr("width", gridSize)
-.attr("height", gridSize)
-.style("fill", colors[0]);
+                    var heatMap = svg.selectAll(".hour")
+                            .data(data)
+                            .enter().append("rect")
+                            .attr("x", function (d) {
+                                return (d.hour - 1) * gridSize;
+                            })
+                            .attr("y", function (d) {
+                                return (d.day - 1) * gridSize;
+                            })
+                            .attr("rx", 4)
+                            .attr("ry", 4)
+                            .attr("class", "hour bordered")
+                            .attr("width", gridSize)
+                            .attr("height", gridSize)
+                            .style("fill", colors[0]);
 
-heatMap.transition().duration(1000)
-.style("fill", function(d) { return colorScale(d.value); });
+                    heatMap.transition().duration(1000)
+                            .style("fill", function (d) {
+                                return colorScale(d.value);
+                            });
 
 // heatMap.append("title").text(function(d) { return d.value; });
 
-});
-            </script>
+                });
+    </script>
 
 
 {% endblock %}
