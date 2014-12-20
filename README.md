@@ -1,5 +1,5 @@
-Power Grid Load Status
-======================
+Grid Status Now
+===============
 
 This is an attempt at parsing the data in the [Load Meter][1] provided by
 The Egyptian Electric Utility and Consumer Protection Regulatory Agency ([EGYPTERA][2]).
@@ -16,7 +16,7 @@ License
 =======
 
 
-	Egypt Power Grid Load Status
+	Grid Status Now
 	Copyright (C) 2014  Mosab Ahmad
 
 	This program is free software; you can redistribute it and/or

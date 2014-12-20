@@ -22,6 +22,7 @@ class PrepDataForD3Command extends ContainerAwareCommand
 	}
 
 
+	//
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		try
@@ -142,9 +143,7 @@ class PrepDataForD3Command extends ContainerAwareCommand
 				}
 			}
 
-			// $maxs = array_search(max($averaged_load_result[5][0]), $averaged_load_result[5][0]);
-
-
+			// A dirty hack to make sure the domain has all possible values.
 			$file_content .= "34\t10\t3\n";
 			$file_content .= "34\t11\t2\n";
 			$file_content .= "34\t12\t1\n";
