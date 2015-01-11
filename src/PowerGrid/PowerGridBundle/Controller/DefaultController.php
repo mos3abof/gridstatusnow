@@ -14,7 +14,7 @@ class DefaultController extends Controller
 
 		$tz = $this->container->getParameter('default_timezone');
 		$plus = $this->container->getParameter('gmt_as_number');
-		$date = new \DateTime("now");
+		$date = new \DateTime("today");
 		$date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
 
 		$current_date = $date->format('l, F jS');
@@ -47,14 +47,6 @@ class DefaultController extends Controller
 		}
 
 		$month_date = new \Datetime($month . ' ' . $year);
-
-//		print $month_date->modify('last day of this month')->format('Y-m-d'); exit;
-
-
-//		if(!in_array($month, $allowed_months))
-//		{
-//			return $this->render('PowerGridBundle:Default:error.html.twig', array('error_title' => 'No Data Available For That Month!'));
-//		}
 
 		$d3_days = '[';
 
@@ -103,7 +95,8 @@ class DefaultController extends Controller
 			// Querying data for day
 			$day_date = new \DateTime($year . '-' . $month . '-' . $day);
 			$first_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
-			$last_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+1 day')->modify('+' . $plus . ' hour');
+//			$last_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
+			$last_delimiter = $first_delimiter;
 
 			$day_loop = true;
 
