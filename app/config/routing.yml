@@ -11,13 +11,8 @@ history:
     defaults: { _controller: PowerGridBundle:Default:history }
 
 
-history_archive:
-    pattern: /history/{month_name}
-    defaults: { _controller: PowerGridBundle:Default:history }
-
-
 history_archive_month_and_year:
-    pattern: /history/{year}/{month_name}
+    pattern: /history/{year}/{month}
     defaults: { _controller: PowerGridBundle:Default:history }
 
 history_day_tsv:

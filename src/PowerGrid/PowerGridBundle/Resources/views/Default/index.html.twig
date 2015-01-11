@@ -104,21 +104,8 @@
                 </p>
                 </p>
                 <hr/>
-                <h2>Archived Load Distribution Graphs Are Available For</h2>
-                <ol class="list-unstyled">
-                    <li>
-                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'november', 'year' : 2014}) }}">November
-                            2014</a></li>
-                    <li>
-                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'october', 'year' : 2014}) }}">October
-                            2014</a></li>
-                    <li>
-                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'september', 'year' : 2014}) }}">September
-                            2014</a></li>
-                    <li>
-                        <a href="{{ path('history_archive_month_and_year', {'month_name' : 'august', 'year' : 2014}) }}">August
-                            2014</a></li>
-                </ol>
+
+                {{ include('monthslist.html.twig') }}
 
                 <hr/>
                 <h2>Developers</h2>

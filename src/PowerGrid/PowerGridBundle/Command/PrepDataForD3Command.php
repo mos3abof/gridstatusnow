@@ -131,14 +131,17 @@ class PrepDataForD3Command extends ContainerAwareCommand
 
 			$file_content = "day\thour\tvalue\n";
 
-			for($day = 1; $day <= count($averaged_load_result); $day++)
+			for($day_record = 1; $day_record <= count($averaged_load_result); $day_record++)
 			{
-				for($hour = 0; $hour <= count($averaged_load_result[$day]); $hour++)
+				if(isset($averaged_load_result[$day_record]))
 				{
-					if(isset($averaged_load_result[$day][$hour]))
+					for($hour = 0; $hour <= count($averaged_load_result[$day_record]); $hour++)
 					{
-						$hour_value = array_search(max($averaged_load_result[$day][$hour]), $averaged_load_result[$day][$hour]);
-						$file_content .= $day . "\t" . ($hour + 1) . "\t" . $hour_value . "\n";
+						if(isset($averaged_load_result[$day_record][$hour]))
+						{
+							$hour_value = array_search(max($averaged_load_result[$day_record][$hour]), $averaged_load_result[$day_record][$hour]);
+							$file_content .= $day_record . "\t" . ($hour + 1) . "\t" . $hour_value . "\n";
+						}
 					}
 				}
 			}

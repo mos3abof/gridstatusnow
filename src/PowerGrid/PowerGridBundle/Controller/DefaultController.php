@@ -34,47 +34,33 @@ class DefaultController extends Controller
 		return new JsonResponse(array('status' => $this->get('power_grid_service')->getStatus()));
 	}
 
-	public function historyAction($month = 'november')
+	public function historyAction($year = '', $month = '')
 	{
-		$allowed_months = array(
-			'august',
-			'september',
-			'october',
-			'november'
-		);
-
-		$year = 2014;
-
-		$month_number = array(
-			'january'   => 1,
-			'february'  => 2,
-			'march'     => 3,
-			'april'     => 4,
-			'may'       => 5,
-			'june'      => 6,
-			'july'      => 7,
-			'august'    => 8,
-			'september' => 9,
-			'october'   => 10,
-			'november'  => 11,
-			'december'  => 12,
-		);
-
-		// $first_day_of_month = date('01-m-Y');
-
-		if(!in_array($month, $allowed_months))
+		if($year == '')
 		{
-			// throw $this->createNotFoundException('Sorry not existing');
-			// throw new HttpException(404, "No Data Available For That Month!");
-			return $this->render('PowerGridBundle:Default:error.html.twig', array('error_title' => 'No Data Available For That Month!'));
-
+			$year = date('Y');
 		}
+
+		if($month == '')
+		{
+			$month = date('F');
+		}
+
+		$month_date = new \Datetime($month . ' ' . $year);
+
+//		print $month_date->modify('last day of this month')->format('Y-m-d'); exit;
+
+
+//		if(!in_array($month, $allowed_months))
+//		{
+//			return $this->render('PowerGridBundle:Default:error.html.twig', array('error_title' => 'No Data Available For That Month!'));
+//		}
 
 		$d3_days = '[';
 
-		$days_number = cal_days_in_month(CAL_GREGORIAN, $month_number[$month], $year);
+		$days_number = cal_days_in_month(CAL_GREGORIAN, $month_date->format('m'), $year);
 
-		$start_date = $year . '-' . $month_number[$month] . '-01';
+		$start_date = $month_date->modify('first day of this month')->format('Y-m-d');
 
 		// Give in your own start date
 		$start_day = date('z', strtotime($start_date));
@@ -86,7 +72,13 @@ class DefaultController extends Controller
 		}
 		$d3_days .= '];';
 
-		return $this->render('PowerGridBundle:Default:history.html.twig', array('month' => $month, 'd3_days' => $d3_days));
+		$template_vars = array(
+			'month_name' => $month,
+			'd3_days' => $d3_days,
+			'year_number' => $year,
+			'month_number' => $month
+		);
+		return $this->render('PowerGridBundle:Default:history.html.twig', $template_vars);
 	}
 
 
