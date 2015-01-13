@@ -4,8 +4,6 @@ namespace PowerGrid\PowerGridBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-// use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
@@ -54,9 +52,6 @@ class DefaultController extends Controller
 
 		$start_date = $month_date->modify('first day of this month')->format('Y-m-d');
 
-		// Give in your own start date
-		$start_day = date('z', strtotime($start_date));
-
 		for($i = 0; $i < $days_number; $i++)
 		{
 			$date = strtotime(date("Y-m-d", strtotime($start_date)) . " $i day");
@@ -80,7 +75,7 @@ class DefaultController extends Controller
 
 		// global values and configs
 		$plus = $this->container->getParameter('gmt_as_number');
-		$web_dir_path = $this->container->getParameter('web_dir_path');
+
 		$tz = $this->container->getParameter('default_timezone');;
 
 		$status_to_number = array(
@@ -95,7 +90,6 @@ class DefaultController extends Controller
 			// Querying data for day
 			$day_date = new \DateTime($year . '-' . $month . '-' . $day);
 			$first_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
-//			$last_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
 			$last_delimiter = $first_delimiter;
 
 			$day_loop = true;
@@ -161,7 +155,7 @@ class DefaultController extends Controller
 				}
 			}
 		}
-		// prepare records for a nonth
+		// prepare records for a month
 		else
 		{
 			for($day_record = 1; $day_record <= count($averaged_load_result); $day_record++)
