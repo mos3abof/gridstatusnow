@@ -17,3 +17,6 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+    
+    default_timezone: Africa/Cairo
+    gmt_as_number: 2
