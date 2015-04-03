@@ -43,7 +43,7 @@ class DefaultController extends Controller
 		
 		$day = intval($day);
 		
-		$dataResults = array('meta_data'=> array('year' => $year, 'month' => $month), 'data' => array());
+		$dataResults = array('data' => array());
 		
 		$records = $this->retrieveHistoricalData($year, $month, $day);
 		
@@ -54,7 +54,11 @@ class DefaultController extends Controller
 			{
 				$day_number = $object->getTimestamp()->format('d');
 				$hour_number = $object->getTimestamp()->format('H');
-				$dataResults['data'][$day_number][$hour_number] = $object->getStatus();
+				if(empty($day)){
+					$dataResults['data'][$day_number][$hour_number] = $object->getStatus();
+				}else{
+					$dataResults['data'][$hour_number] = $object->getStatus();
+				}
 			}
 		
 		}
