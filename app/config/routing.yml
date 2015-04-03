@@ -6,10 +6,17 @@ status:
     pattern:  /status
     defaults: { _controller: PowerGridBundle:Default:status }
 
+history_status_year_month:
+    pattern:  /status/{year}/{month}
+    defaults: { _controller: PowerGridBundle:Default:status }
+
+history_status_of_day:
+    pattern:  /status/{year}/{month}/{day}
+    defaults: { _controller: PowerGridBundle:Default:status }
+
 history:
     pattern:  /history
     defaults: { _controller: PowerGridBundle:Default:history }
-
 
 history_archive_month_and_year:
     pattern: /history/{year}/{month}
