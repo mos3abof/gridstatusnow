@@ -184,6 +184,123 @@ class DefaultController extends Controller
 		exit;
 	}
 
+	public function yearinreviewtsvAction($year)
+	{
+		$tsv_output = "";
+		$tsv_output = "day\thour\tvalue\n";
+		for($month = 1; $month <= 12; $month++)
+		{
+
+			$repository = $this->getDoctrine()->getRepository('PowerGridBundle:Status');
+
+			// global values and configs
+			$plus = $this->container->getParameter('gmt_as_number');
+
+			$tz = $this->container->getParameter('default_timezone');;
+
+			$status_to_number = array(
+				'Safe'    => 3,
+				'Warning' => 2,
+				'Danger'  => 1,
+				'Unknown' => 4
+			);
+
+				// Querying data for month
+				$first_delimiter = new \DateTime($year . '-01-01');
+				$first_delimiter->modify('first day of this year');
+
+				$last_delimiter = new \DateTime($year . '-12-31');
+				$last_delimiter->modify('last day of this year');
+
+
+			// Create a query
+			$query = $repository->createQueryBuilder('p')
+				->where('p.timestamp BETWEEN :starting AND :ending')
+				->setParameter('starting', $first_delimiter->format('Y-m-d 00:00:00'))
+				->setParameter('ending', $last_delimiter->format('Y-m-d 23:59:59'))
+				->orderBy('p.id', 'ASC')
+				->getQuery();
+
+			// Get the query result
+			$records = $query->getResult();
+
+			// Initialize an array to process results
+			$averaged_load_result = array();
+
+			// If we got any results process them
+			if(!$records)
+			{
+				print 'No results exist!';
+				exit;
+			}
+
+			foreach($records as $key => $object)
+			{
+				$month_number = intval($object->getTimestamp()->format('m'));
+				$day_number = intval($object->getTimestamp()->format('z'));
+				$hour_number = intval($object->getTimestamp()->format('H'));
+				$status_number = $status_to_number[$object->getStatus()];
+
+				$averaged_load_result[$day_number][$hour_number][1] = 0;
+				$averaged_load_result[$day_number][$hour_number][2] = 0;
+				$averaged_load_result[$day_number][$hour_number][3] = 0;
+				$averaged_load_result[$day_number][$hour_number][4] = 0;
+
+				$averaged_load_result[$day_number][$hour_number][$status_number]++;
+			}
+
+			for($day_record = 1; $day_record <= count($averaged_load_result); $day_record++)
+			{
+				if(isset($averaged_load_result[$day_record]))
+				{
+					for($hour = 0; $hour <= count($averaged_load_result[$day_record]); $hour++)
+					{
+						if(isset($averaged_load_result[$day_record][$hour]))
+						{
+							$hour_value = array_search(max($averaged_load_result[$day_record][$hour]), $averaged_load_result[$day_record][$hour]);
+							$tsv_output .= $day_record . "\t" . ($hour + 1) . "\t" . $hour_value . "\n";
+						}
+					}
+				}
+			}
+		}
+
+		print $tsv_output;
+		exit;
+	}
+
+	public function yearinreviewAction($year = '')
+	{
+		$allowed_years = array(
+			'2014',
+		);
+
+		if(in_array($year, $allowed_years))
+		{
+			$days_number = 366;
+			$d3_days = '[';
+
+			for($i = 1; $i <= $days_number; $i++)
+			{
+				$d3_days .= '"' . $i . '",';
+			}
+			$d3_days .= '];';
+
+			$template_vars = array(
+				'month_name'   => "",
+				'd3_days'      => $d3_days,
+				'year_number'  => $year,
+				'month_number' => ""
+			);
+
+			return $this->render('PowerGridBundle:Default:yearinreview.html.twig', $template_vars);
+		}
+		else
+		{
+
+		}
+	}
+
 	public function apiAction()
 	{
 		return $this->render('PowerGridBundle:Default:api.html.twig');

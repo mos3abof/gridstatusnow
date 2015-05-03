@@ -23,6 +23,14 @@ history_archive_month_and_year_tsv:
     pattern: /history/tsv/{year}/{month}
     defaults: { _controller: PowerGridBundle:Default:historytsv }
 
+history_year_in_review:
+  pattern: /yearinreview/{year}
+  defaults: { _controller: PowerGridBundle:Default:yearinreview }
+
+history_year_in_review_tsv:
+  pattern: /yearinreviewtsv/{year}
+  defaults: { _controller: PowerGridBundle:Default:yearinreviewtsv }
+
 api:
     pattern: /api
     defaults: { _controller: PowerGridBundle:Default:api}
