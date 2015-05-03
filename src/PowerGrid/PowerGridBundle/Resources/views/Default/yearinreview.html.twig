@@ -27,9 +27,9 @@
         <div class="blog-post">
             <div class="blog-header">
 
-                <h1><i class="fa fa-bolt"></i> Grid Status Now &raquo;</h1>
+                <h1><i class="fa fa-bolt"></i> Grid Status Now (<a href="http://www.gridstatusnow.com" target="_blank">www.gridstatusnow.com</a>) &raquo;</h1>
 
-                <h2 class="blog-title">Load Distribution For {{ year_number }}</h2>
+                <h2 class="blog-title">Year In Review: How The Load On The Egyptian Power Grid Looked Like Through {{ year_number }}</h2>
 
                 <div id="week-1"></div>
                 Legend :
@@ -47,14 +47,6 @@
             </span>
 
 
-
-
-                <hr/>
-
-                {{ include('monthslist.html.twig') }}
-
-
-
                 <script type="text/javascript">
                     var margin = {top: 50, right: 0, bottom: 100, left: 120},
 // days = ["Friday 1st", "Saturday 2nd", "Sunday 3rd", "Monday 4th", "Tuesday 5th", "Wednesday 6th", "Thursday 7th", "Friday 8th", "Saturday 9th", "Sunday 10th", "Monday 11th", "Tuesday 12th", "Wednesday 13th", "Thursday 14th", "Friday 15th", "Saturday 16th", "Sunday 17th", "Monday 18th", "Tuesday 19th", "Wednesday 20th", "Thursday 21st", "Friday 22nd", "Saturday 23rd", "Sunday 24th", "Monday 25th", "Tuesday 26th", "Wednesday 27th", "Thursday 28th", "Friday 29th", "Saturday 30th", "Sunday 31st",],
@@ -62,7 +54,7 @@
                     days = {{ d3_days|raw }}
 
                     width = 940 - margin.left - margin.right,
-                    height = 13440 - margin.top - margin.bottom,
+                    height = 12500 - margin.top - margin.bottom,
     //height = ((days.length * 36) + 30) - margin.top - margin.bottom,
     //height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
                     gridSize = Math.floor(width / 24),

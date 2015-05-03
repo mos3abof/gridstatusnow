@@ -188,7 +188,8 @@ class DefaultController extends Controller
 	{
 		$tsv_output = "";
 		$tsv_output = "day\thour\tvalue\n";
-		for($month = 1; $month <= 12; $month++)
+		//for($month = 1; $month <= 12; $month++)
+
 		{
 
 			$repository = $this->getDoctrine()->getRepository('PowerGridBundle:Status');
@@ -207,18 +208,18 @@ class DefaultController extends Controller
 
 				// Querying data for month
 				$first_delimiter = new \DateTime($year . '-01-01');
-				$first_delimiter->modify('first day of this year');
+				$first_delimiter->modify('first day of ' . $year);
 
 				$last_delimiter = new \DateTime($year . '-12-31');
-				$last_delimiter->modify('last day of this year');
+				$last_delimiter->modify('last day of ' . $year);
 
 
 			// Create a query
 			$query = $repository->createQueryBuilder('p')
 				->where('p.timestamp BETWEEN :starting AND :ending')
-				->setParameter('starting', $first_delimiter->format('Y-m-d 00:00:00'))
-				->setParameter('ending', $last_delimiter->format('Y-m-d 23:59:59'))
-				->orderBy('p.id', 'ASC')
+				->setParameter('starting', '2014-01-01 00:00:00')
+				->setParameter('ending', '2015-01-01 00:00:00')
+				->orderBy('p.timestamp', 'ASC')
 				->getQuery();
 
 			// Get the query result
@@ -249,7 +250,7 @@ class DefaultController extends Controller
 				$averaged_load_result[$day_number][$hour_number][$status_number]++;
 			}
 
-			for($day_record = 1; $day_record <= count($averaged_load_result); $day_record++)
+			for($day_record = 0; $day_record <= count($averaged_load_result); $day_record++)
 			{
 				if(isset($averaged_load_result[$day_record]))
 				{
@@ -258,7 +259,7 @@ class DefaultController extends Controller
 						if(isset($averaged_load_result[$day_record][$hour]))
 						{
 							$hour_value = array_search(max($averaged_load_result[$day_record][$hour]), $averaged_load_result[$day_record][$hour]);
-							$tsv_output .= $day_record . "\t" . ($hour + 1) . "\t" . $hour_value . "\n";
+							$tsv_output .= ($day_record + 1) . "\t" . ($hour + 1) . "\t" . $hour_value . "\n";
 						}
 					}
 				}
@@ -277,12 +278,13 @@ class DefaultController extends Controller
 
 		if(in_array($year, $allowed_years))
 		{
-			$days_number = 366;
+			$days_number = 365;
 			$d3_days = '[';
 
-			for($i = 1; $i <= $days_number; $i++)
+			for($i = 0 ; $i < $days_number; $i++)
 			{
-				$d3_days .= '"' . $i . '",';
+				$display_date = \DateTime::createFromFormat('z Y', strval($i) . ' ' . strval($year));
+				$d3_days .= '"' . $display_date->format('D, M jS'). '",';
 			}
 			$d3_days .= '];';
 
