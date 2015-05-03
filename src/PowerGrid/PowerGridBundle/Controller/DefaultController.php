@@ -18,12 +18,13 @@ class DefaultController extends Controller
 		$current_date = $date->format('l, F jS');
 
 		$template_vars = array(
-			'status' => $this->get('power_grid_service')->getStatus(),
-			'today' => $current_date,
-			'day_number' => $date->format('d'),
+			'status'       => $this->get('power_grid_service')->getStatus(),
+			'today'        => $current_date,
+			'day_number'   => $date->format('d'),
 			'month_number' => $date->format('m'),
-			'year_number' => $date->format('Y'),
+			'year_number'  => $date->format('Y'),
 		);
+
 		return $this->render('PowerGridBundle:Default:index.html.twig', $template_vars);
 	}
 
@@ -60,14 +61,14 @@ class DefaultController extends Controller
 		$d3_days .= '];';
 
 		$template_vars = array(
-			'month_name' => $month,
-			'd3_days' => $d3_days,
-			'year_number' => $year,
+			'month_name'   => $month,
+			'd3_days'      => $d3_days,
+			'year_number'  => $year,
 			'month_number' => $month
 		);
+
 		return $this->render('PowerGridBundle:Default:history.html.twig', $template_vars);
 	}
-
 
 	public function historytsvAction($year, $month, $day = '')
 	{
@@ -101,7 +102,7 @@ class DefaultController extends Controller
 			$first_delimiter = new \DateTime($year . '-' . $month . '-01');
 			$first_delimiter->modify('first day of this month');
 
-			$last_delimiter =  new \DateTime($year . '-' . $month . '-01');
+			$last_delimiter = new \DateTime($year . '-' . $month . '-01');
 			$last_delimiter->modify('last day of this month');
 		}
 
@@ -141,7 +142,6 @@ class DefaultController extends Controller
 			$averaged_load_result[$day_number][$hour_number][$status_number]++;
 		}
 
-
 		// Prepare records for one day
 		if(isset($day_loop) && $day_loop == true)
 		{
@@ -174,15 +174,12 @@ class DefaultController extends Controller
 			}
 		}
 
-
 		$tsv_output .= "34\t10\t3\n";
 		$tsv_output .= "34\t11\t2\n";
 		$tsv_output .= "34\t12\t1\n";
 
 		print $tsv_output;
 		exit;
-
-
 	}
 
 	public function apiAction()
