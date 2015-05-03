@@ -83,7 +83,7 @@ class DefaultController extends Controller
 			'Safe'    => 3,
 			'Warning' => 2,
 			'Danger'  => 1,
-			'Unknown' => 1
+			'Unknown' => 4
 		);
 
 		if(isset($day) && $day != '')
@@ -138,6 +138,7 @@ class DefaultController extends Controller
 			$averaged_load_result[$day_number][$hour_number][1] = 0;
 			$averaged_load_result[$day_number][$hour_number][2] = 0;
 			$averaged_load_result[$day_number][$hour_number][3] = 0;
+			$averaged_load_result[$day_number][$hour_number][4] = 0;
 
 			$averaged_load_result[$day_number][$hour_number][$status_number]++;
 		}
@@ -174,9 +175,10 @@ class DefaultController extends Controller
 			}
 		}
 
-		$tsv_output .= "34\t10\t3\n";
-		$tsv_output .= "34\t11\t2\n";
-		$tsv_output .= "34\t12\t1\n";
+		$tsv_output .= "34\t10\t4\n";
+		$tsv_output .= "34\t11\t3\n";
+		$tsv_output .= "34\t12\t2\n";
+		$tsv_output .= "34\t13\t1\n";
 
 		print $tsv_output;
 		exit;
