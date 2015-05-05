@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %} Yearly Infographic For The Year 2014 | Grid Status Now{% endblock %}
+
+{% block fb %}
+	<meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://www.gridstatusnow.com/about"/>
+    <meta property="og:title" content="The Load On The Power Grid In 2014 | Grid Status Now"/>
+    <meta property="og:description" content="Year In Review: How The Load On The Egyptian Power Grid Looked Like Through 2014."/>
+    <meta property="og:image" content="{{ asset('images/power-lines.jpg')}}"/>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@gridstatusnow">
+    <meta name="twitter:creator" content="@mos3abof">
+    <meta name="twitter:title" content="About | Grid Status Now">
+    <meta name="twitter:description" content="About Grid Status Now project">
+    <meta name="twitter:image:src" content="{{ asset('images/power-lines.jpg')}}">
+
+{% endblock %}
+
+{% block history_active %} active{% endblock %}
+
+
+{% block content %}
+<div class="blog-header">
+        <h1><i class="fa fa-bolt"></i> Grid Status Now &raquo;</h1>
+
+        <h2 class="blog-title">Year In Review: How The Load On The Egyptian Power Grid Looked Like Through 2014</h2>
+		<br />
+		<p>
+			<a title="Right click to save..." href="{{ asset('images/egyptian-power-grid-load-year-in-review-2014.png') }}" target="_blank">
+				Click here to download the infographic (.png file) 
+				<i class="glyphicon glyphicon-download-alt"></i>
+			</a>
+		</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-11 blog-main">
+
+          <div class="blog-post">
+            <p>
+				<img src="{{ asset('images/2014-infographic.png') }}" />
+            </p>
+
+			<a title="Right click to save..." href="{{ asset('images/egyptian-power-grid-load-year-in-review-2014.png') }}" target="_blank">
+				Click here to download the infographic (.png file) 
+				<i class="glyphicon glyphicon-download-alt"></i>
+			</a>
+
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+
+{% endblock %}

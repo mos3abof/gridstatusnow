@@ -184,6 +184,13 @@ class DefaultController extends Controller
 		exit;
 	}
 
+
+	public function yearlyinfographicAction($year = '')
+	{
+		$template_vars = array();
+		return $this->render('PowerGridBundle:Default:infographic.html.twig', $template_vars);
+	}
+
 	public function apiAction()
 	{
 		return $this->render('PowerGridBundle:Default:api.html.twig');
