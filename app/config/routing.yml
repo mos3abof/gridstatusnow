@@ -30,6 +30,9 @@ history_archive_month_and_year_tsv:
     pattern: /history/tsv/{year}/{month}
     defaults: { _controller: PowerGridBundle:Default:historytsv }
 
+infographic:
+    pattern: /infographic/2014
+    defaults: { _controller: PowerGridBundle:Default:yearlyinfographic }
 api:
     pattern: /api
     defaults: { _controller: PowerGridBundle:Default:api}

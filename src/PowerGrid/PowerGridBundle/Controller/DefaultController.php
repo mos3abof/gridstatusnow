@@ -18,12 +18,13 @@ class DefaultController extends Controller
 		$current_date = $date->format('l, F jS');
 
 		$template_vars = array(
-			'status' => $this->get('power_grid_service')->getStatus(),
-			'today' => $current_date,
-			'day_number' => $date->format('d'),
+			'status'       => $this->get('power_grid_service')->getStatus(),
+			'today'        => $current_date,
+			'day_number'   => $date->format('d'),
 			'month_number' => $date->format('m'),
-			'year_number' => $date->format('Y'),
+			'year_number'  => $date->format('Y'),
 		);
+
 		return $this->render('PowerGridBundle:Default:index.html.twig', $template_vars);
 	}
 
@@ -62,6 +63,7 @@ class DefaultController extends Controller
 			}
 		
 		}
+
 		return $dataResults;
 	}
 	
@@ -111,7 +113,8 @@ class DefaultController extends Controller
 		// Get the query result
 		return $query->getResult();
 	}
-	
+
+
 	public function historyAction($year = '', $month = '')
 	{
 		if($year == '')
@@ -181,10 +184,10 @@ class DefaultController extends Controller
 			$averaged_load_result[$day_number][$hour_number][1] = 0;
 			$averaged_load_result[$day_number][$hour_number][2] = 0;
 			$averaged_load_result[$day_number][$hour_number][3] = 0;
+			$averaged_load_result[$day_number][$hour_number][4] = 0;
 
 			$averaged_load_result[$day_number][$hour_number][$status_number]++;
 		}
-
 
 		// Prepare records for one day
 		if(isset($day_loop) && $day_loop == true)
@@ -218,13 +221,20 @@ class DefaultController extends Controller
 			}
 		}
 
-
-		$tsv_output .= "34\t10\t3\n";
-		$tsv_output .= "34\t11\t2\n";
-		$tsv_output .= "34\t12\t1\n";
+		$tsv_output .= "34\t10\t4\n";
+		$tsv_output .= "34\t11\t3\n";
+		$tsv_output .= "34\t12\t2\n";
+		$tsv_output .= "34\t13\t1\n";
 
 		print $tsv_output;
 		exit;
+	}
+
+
+	public function yearlyinfographicAction($year = '')
+	{
+		$template_vars = array();
+		return $this->render('PowerGridBundle:Default:infographic.html.twig', $template_vars);
 	}
 
 	public function apiAction()

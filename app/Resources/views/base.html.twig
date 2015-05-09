@@ -12,7 +12,7 @@
     {% block fb %} {% endblock %}
 
 
-    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <title>
         {% block title %} {% endblock %}
@@ -134,7 +134,30 @@
     <p>
         Hosted on <a href="http://www.dreamhost.com/r.cgi?1017456" target="_blank">DreamHost</a>.
     </p>
+	<p>
+		<a href="http://opendefinition.org/ossd/" title="Open Online Software Service" target="_blank">
+			<img src="http://assets.okfn.org/images/ok_buttons/os_80x15_orange_grey.png" alt="" border="">
+		</a>
+	
+		<a href="http://opendefinition.org/" title="Open Content" target="_blank">
+	        <img src="http://assets.okfn.org/images/ok_buttons/oc_80x15_blue.png" alt="" border="">
+      </a>
+	</p>
 </div>
+
+<!-- Google Analytics code -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62560230-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<!-- End of Google Analytics code -->
 
 
 <!-- Bootstrap core JavaScript

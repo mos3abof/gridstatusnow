@@ -14,9 +14,6 @@
     {% set status_message = 'Unknown Status. Source seems to be down!' %}
 {% endif %}
 
-
-
-
 {% block title %}Grid Status Now | Egypt's Power Grid Load Status As A Web Service{% endblock %}
 
 {% block fb %}
@@ -39,12 +36,7 @@
 
 {% block home_active %} active{% endblock %}
 
-
 {% block content %}
-
-
-
-
     <div class="blog-header">
         <h1 class="blog-title"><i class="fa fa-bolt"></i> Grid Status Now</h1>
 
@@ -53,18 +45,16 @@
     </div>
 
     <div class="row">
-
         <div class="col-sm-12 blog-main">
-
             <div class="blog-post">
                 <p>
-
                 <h3>Load on Egypt's electric power grid is in the<sup style="color:red;">*</sup>:</h3>
                 <span class="text-center text-capitalize btn-lg btn-block btn-{{ status_class }}"
                       style="font-size:1.5em;">
                     {{ status_message }}
                 </span>
                 </p>
+
                 <p>
                     <em>
                         <sup style="color:red;">*</sup>According to The Egyptian Electric Utility and Consumer
@@ -125,23 +115,18 @@
                 </p>
             </div>
             <!-- /.blog-post -->
-
         </div>
         <!-- /.blog-main -->
     </div><!-- /.row -->
 
-
-
     <script type="text/javascript">
         var margin = {top: 30, right: 0, bottom: 0, left: 0},
-// days = ["Friday 1st", "Saturday 2nd", "Sunday 3rd", "Monday 4th", "Tuesday 5th", "Wednesday 6th", "Thursday 7th", "Friday 8th", "Saturday 9th", "Sunday 10th", "Monday 11th", "Tuesday 12th", "Wednesday 13th", "Thursday 14th", "Friday 15th", "Saturday 16th", "Sunday 17th", "Monday 18th", "Tuesday 19th", "Wednesday 20th", "Thursday 21st", "Friday 22nd", "Saturday 23rd", "Sunday 24th", "Monday 25th", "Tuesday 26th", "Wednesday 27th", "Thursday 28th", "Friday 29th", "Saturday 30th", "Sunday 31st",],
-
+        //  days = ["Friday 1st", "Saturday 2nd", "Sunday 3rd", "Monday 4th", "Tuesday 5th", "Wednesday 6th", "Thursday 7th", "Friday 8th", "Saturday 9th", "Sunday 10th", "Monday 11th", "Tuesday 12th", "Wednesday 13th", "Thursday 14th", "Friday 15th", "Saturday 16th", "Sunday 17th", "Monday 18th", "Tuesday 19th", "Wednesday 20th", "Thursday 21st", "Friday 22nd", "Saturday 23rd", "Sunday 24th", "Monday 25th", "Tuesday 26th", "Wednesday 27th", "Thursday 28th", "Friday 29th", "Saturday 30th", "Sunday 31st",],
             days = [""]
-
-        width = 940 - margin.left - margin.right,
+            width = 940 - margin.left - margin.right,
             height = 75 - margin.top - margin.bottom,
-//height = ((days.length * 36) + 30) - margin.top - margin.bottom,
-//height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
+            //height = ((days.length * 36) + 30) - margin.top - margin.bottom,
+            //height = Math.min(days.length * 41, ((days.length * 41) + 70)) - margin.top - margin.bottom,
             gridSize = Math.floor(width / 24),
             legendElementWidth = gridSize * 2,
             buckets = 3,
@@ -149,8 +134,6 @@
             times = ["12am", "1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"];
 
         d3.tsv("{{ path('history_day_tsv', {'year' : year_number, 'month' : month_number, 'day' : day_number}) }}",
-
-
             function (d) {
                 return {
                     day: +d.day,
@@ -223,11 +206,7 @@
                     .style("fill", function (d) {
                         return colorScale(d.value);
                     });
-
 // heatMap.append("title").text(function(d) { return d.value; });
-
             });
     </script>
-
-
 {% endblock %}
