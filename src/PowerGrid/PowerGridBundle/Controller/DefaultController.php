@@ -28,10 +28,92 @@ class DefaultController extends Controller
 		return $this->render('PowerGridBundle:Default:index.html.twig', $template_vars);
 	}
 
-	public function statusAction()
+	public function statusAction($year = '', $month = '', $day = '')
 	{
+		if(!empty($year)){
+			return new JsonResponse($this->prepareHistoricalApiData($year, $month, $day));
+		}
 		return new JsonResponse(array('status' => $this->get('power_grid_service')->getStatus()));
 	}
+	
+	private function prepareHistoricalApiData($year, $month = '', $day = ''){
+		if($month == '')
+		{
+			$month = date('F');
+		}
+		
+		$day = intval($day);
+		
+		$dataResults = array('data' => array());
+		
+		$records = $this->retrieveHistoricalData($year, $month, $day);
+		
+		if(!$records){
+			$dataResults['data'] ='No results exist!';
+		}else{
+			foreach($records as $key => $object)
+			{
+				$day_number = $object->getTimestamp()->format('d');
+				$hour_number = $object->getTimestamp()->format('H');
+				if(empty($day)){
+					$dataResults['data'][$day_number][$hour_number] = $object->getStatus();
+				}else{
+					$dataResults['data'][$hour_number] = $object->getStatus();
+				}
+			}
+		
+		}
+
+		return $dataResults;
+	}
+	
+	private function retrieveHistoricalData($year, $month, $day = '')
+	{
+		$repository = $this->getDoctrine()->getRepository('PowerGridBundle:Status');
+
+		// global values and configs
+		$plus = $this->container->getParameter('gmt_as_number');
+		$tz = $this->container->getParameter('default_timezone');
+
+		$status_to_number = array(
+			'Safe'    => 3,
+			'Warning' => 2,
+			'Danger'  => 1,
+			'Unknown' => 1
+		);
+
+		if(isset($day) && $day != '')
+		{
+			// Querying data for day
+			$day_date = new \DateTime($year . '-' . $month . '-' . $day);
+			$first_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
+			$last_delimiter = $first_delimiter;
+
+			$day_loop = true;
+
+		}
+		else
+		{
+			// Querying data for month
+			$first_delimiter = new \DateTime($year . '-' . $month . '-01');
+			$first_delimiter->modify('first day of this month');
+
+			$last_delimiter =  new \DateTime($year . '-' . $month . '-01');
+			$last_delimiter->modify('last day of this month');
+		}
+
+		// Create a query
+		$query = $repository->createQueryBuilder('p')
+			->where('p.timestamp BETWEEN :starting AND :ending')
+			->setParameter('starting', $first_delimiter->format('Y-m-d 00:00:00'))
+			->setParameter('ending', $last_delimiter->format('Y-m-d 23:59:59'))
+			->orderBy('p.id', 'ASC')
+			->getQuery();
+
+		// Get the query result
+		return $query->getResult();
+	}
+
 
 	public function historyAction($year = '', $month = '')
 	{
@@ -61,61 +143,25 @@ class DefaultController extends Controller
 		$d3_days .= '];';
 
 		$template_vars = array(
-			'month_name'   => $month,
-			'd3_days'      => $d3_days,
-			'year_number'  => $year,
+			'month_name' => $month,
+			'd3_days' => $d3_days,
+			'year_number' => $year,
 			'month_number' => $month
 		);
-
 		return $this->render('PowerGridBundle:Default:history.html.twig', $template_vars);
 	}
 
+
 	public function historytsvAction($year, $month, $day = '')
 	{
-		$repository = $this->getDoctrine()->getRepository('PowerGridBundle:Status');
-
-		// global values and configs
-		$plus = $this->container->getParameter('gmt_as_number');
-
-		$tz = $this->container->getParameter('default_timezone');;
-
+		$records = $this->retrieveHistoricalData($year, $month, $day);
+		
 		$status_to_number = array(
 			'Safe'    => 3,
 			'Warning' => 2,
 			'Danger'  => 1,
-			'Unknown' => 4
+			'Unknown' => 1
 		);
-
-		if(isset($day) && $day != '')
-		{
-			// Querying data for day
-			$day_date = new \DateTime($year . '-' . $month . '-' . $day);
-			$first_delimiter = $day_date->setTimezone(new \DateTimeZone($tz))->modify('+' . $plus . ' hour');
-			$last_delimiter = $first_delimiter;
-
-			$day_loop = true;
-
-		}
-		else
-		{
-			// Querying data for month
-			$first_delimiter = new \DateTime($year . '-' . $month . '-01');
-			$first_delimiter->modify('first day of this month');
-
-			$last_delimiter = new \DateTime($year . '-' . $month . '-01');
-			$last_delimiter->modify('last day of this month');
-		}
-
-		// Create a query
-		$query = $repository->createQueryBuilder('p')
-			->where('p.timestamp BETWEEN :starting AND :ending')
-			->setParameter('starting', $first_delimiter->format('Y-m-d 00:00:00'))
-			->setParameter('ending', $last_delimiter->format('Y-m-d 23:59:59'))
-			->orderBy('p.id', 'ASC')
-			->getQuery();
-
-		// Get the query result
-		$records = $query->getResult();
 
 		// Initialize an array to process results
 		$averaged_load_result = array();

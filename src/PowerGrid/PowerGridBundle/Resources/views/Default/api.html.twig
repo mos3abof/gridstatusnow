@@ -62,6 +62,40 @@
                 <pre>{"status":"Danger"}</pre>
                 <br />
             <hr />
+            
+            <h3>GET /status/{year}/{month}</h3>
+
+            <h4>Description</h4>
+                Get the hourly historical load status data of a specific month in JSON format.
+                <br />
+                <br />
+            <h4>Example Request</h4>
+                <pre>http://www.gridstatusnow.com/status/2015/January</pre>
+                <br />
+
+            <h4>Example Response</h4>
+                <pre>{"data":{"01":{"00":"Danger","01":"Danger","02":"Danger","03":"Danger","04":"Danger","05":"Danger","06":"Danger","07":"Danger","08":"Danger","09":"Safe","10":"Danger","11":"Warning","12":"Danger","13":"Danger","14":"Danger","15":"Danger","16":"Danger","17":"Danger","18":"Danger","19":"Danger","20":"Danger","21":"Danger","22":"Danger","23":"Danger"},
+....
+"31":{"00":"Safe","01":"Safe","02":"Safe","03":"Safe","04":"Safe","05":"Safe","06":"Safe","07":"Safe","08":"Safe","09":"Safe","10":"Safe","11":"Safe","12":"Safe","13":"Warning","14":"Danger","15":"Safe","16":"Safe","17":"Safe","18":"Safe","19":"Safe","20":"Safe","21":"Safe","22":"Safe","23":"Safe"}}}
+								</pre>
+                <br />
+            <hr />
+            
+            <h3>GET /status/{year}/{month}/{day}</h3>
+
+            <h4>Description</h4>
+                Get the hourly historical load status data of a specific day in a given month in JSON format.
+                <br />
+                <br />
+            <h4>Example Request</h4>
+                <pre>http://www.gridstatusnow.com/status/2015/January/1</pre>
+                <br />
+
+            <h4>Example Response</h4>
+                <pre>{"data":{"00":"Safe","01":"Safe","02":"Safe","03":"Safe","04":"Safe","05":"Safe","06":"Safe","07":"Safe","08":"Safe","09":"Safe","10":"Safe","11":"Safe","12":"Safe","13":"Safe","14":"Safe","15":"Safe","16":"Safe","17":"Safe","18":"Safe","19":"Safe","20":"Safe","21":"Safe","22":"Safe","23":"Safe"}}
+								</pre>
+                <br />
+            <hr />
             <h2>Examples</h2>
             <h3>Python Example</h3>
             <p>
